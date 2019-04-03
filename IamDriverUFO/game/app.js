@@ -84,24 +84,35 @@ class NPC extends Phaser.Sprite {
 var IntroGame = {
 
     preload: function () {
-        game.load.spritesheet('button', 'assets/UI/start.png', 108, 48);
-        game.load.spritesheet('sound', 'assets/UI/sound.png', 48, 48);
+        game.load.spritesheet('newGameButton', 'assets/UI/new_game.png', 405, 178);
+        game.load.spritesheet('sound', 'assets/UI/sound.png', 405, 178);
+        game.load.image('logo', 'assets/logo.png', 500, 300)
     },
 
-    startButton: null,
-    soundButton: null,
+    newGameButton: null,
+    soundButton1: null,
+    soundButton2: null,
     create: function () {
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.scale.pageAlignHorisontally = true;
         this.scale.pageAlignVertically = true;
 
         game.stage.backgroundColor = '#182d3b';
-        this.startButton = game.add.button(game.world.centerX - 95, 400, 'button', this.startClick, this, 0, 0, 0);
-        this.soundButton = game.add.button(32, 32, 'sound', this.soundClick, this, 0, 0, 0);
-        this.startButton.scale.setTo(2, 2);
-        this.soundButton.scale.setTo(2, 2);
 
-        game.state.start('MainGame'); //отладка
+        //лого заглушка
+        let logo = game.add.image(game.width / 2, 150, 'logo');
+        logo.anchor.set(0.5, 0.5);
+
+        //кнопка новая игра
+        this.newGameButton = game.add.button(game.width / 2, game.height / 2, 'newGameButton', this.startClick, this, 0, 0, 0);
+        this.newGameButton.anchor.setTo(0.5, 0.5); //якорь по центру
+
+        this.soundButton1 = game.add.button(game.width / 2 - 220, game.height - 120, 'sound', this.soundClick, this, 0, 0, 0);
+        this.soundButton2 = game.add.button(game.width / 2 + 220, game.height - 120, 'sound', this.muteClick, this, 3, 3, 3);
+        this.soundButton1.anchor.setTo(0.5, 0.5);
+        this.soundButton2.anchor.setTo(0.5, 0.5);
+
+        //game.state.start('MainGame'); //отладка
     },
 
     update: function () {
@@ -113,14 +124,16 @@ var IntroGame = {
     },
 
     soundClick: function () {
-        if (config.sound) {
-            this.soundButton.setFrames(1, 1, 1); //выкл звук
-            config.sound = false;
-        }
-        else {
-            this.soundButton.setFrames(0, 0, 0); //вкл звук
-            config.sound = true;
-        }
+        this.soundButton1.setFrames(0, 0, 0);
+        this.soundButton2.setFrames(3, 3, 3);
+        config.sound = true;
+
+    },
+
+    muteClick: function () {
+        this.soundButton1.setFrames(1, 1, 1);
+        this.soundButton2.setFrames(2, 2, 2);
+        config.sound = false;
     }
 }
  
