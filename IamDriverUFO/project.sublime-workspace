@@ -1,0 +1,662 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"f",
+				"for\tfor (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"Affe",
+				"mysql_affected_rows"
+			],
+			[
+				"me",
+				"meta\tTag"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"flex",
+				"flex-flow"
+			],
+			[
+				"r",
+				"row-reverse"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"border-",
+				"border-style"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"li",
+				"link\tTag"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"ke",
+				"kek"
+			],
+			[
+				"fun",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "game/app.js",
+			"settings":
+			{
+				"buffer_size": 530,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/backup/applications.html",
+			"settings":
+			{
+				"buffer_size": 3607,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/G/Проекты/КрестыДаНули/Unit1.pas",
+			"settings":
+			{
+				"buffer_size": 13489,
+				"encoding": "Western (Windows 1252)",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/G/Проекты/Делфи лабы/36/Unit1.pas",
+			"settings":
+			{
+				"buffer_size": 3590,
+				"encoding": "Western (Windows 1252)",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/login.php",
+			"settings":
+			{
+				"buffer_size": 1077,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Kartoshechka/Desktop/Лаба 3 по C#/Laba3.sln",
+			"settings":
+			{
+				"buffer_size": 1085,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "game/assets/app.css",
+			"settings":
+			{
+				"buffer_size": 84,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Phaser.utils.pad"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Install Package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 412.0
+	},
+	"console":
+	{
+		"height": 164.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/G/Git/PhaserTest/PhaserTest",
+		"/G/Git/PhaserTest/PhaserTest/game",
+		"/G/Git/PhaserTest/PhaserTest/game/assets"
+	],
+	"file_history":
+	[
+		"/F/phaser_game/login.php",
+		"/G/Проекты/КрестыДаНули/Unit1.fmx",
+		"/G/Git/PhaserTest/PhaserTest/index.html",
+		"/G/Git/PhaserTest/PhaserTest/.tern-project",
+		"/C/Users/Kartoshechka/AppData/Roaming/Sublime Text 3/Packages/tern_for_sublime/Tern.sublime-settings",
+		"/G/Проекты/БД 3 курс/Salon/App/ViewData.pas",
+		"/G/Games/Counter-Strike Source v34/cstrike/cfg/config.cfg",
+		"/G/Проекты/БД 3 курс/ADO ПКС-304/Editor.pas",
+		"/G/Проекты/БД 3 курс/ADO ПКС-304/DM.pas",
+		"/C/OpenSSL/webhook_cert.pem",
+		"/C/OpenSSL/webhook_pkey.key",
+		"/G/Проекты/Git/ComputerService/MasterBot/webhook_cert.pem",
+		"/G/Установки/quake_3_arena-rip-Q3A/Q3A/baseq3/q3config.cfg",
+		"/G/YandexDisk/Лабораторные работы/Laba2/main.cpp",
+		"/G/Проекты/C#/Temp-Mail-API-master/App/bin/Release/App.exe.config",
+		"/G/YandexDisk/Laba1/backup/Laba1/Laba1.c",
+		"/C/Users/Kartoshechka/Desktop/WPSettings.dat",
+		"/C/Users/Kartoshechka/Desktop/contacts.vcf",
+		"/C/xampp/htdocs/game.php",
+		"/C/xampp/htdocs/reg.php",
+		"/C/xampp/htdocs/login.php",
+		"/C/xampp/htdocs/Timur/.htaccess",
+		"/G/Проекты/БД 3 курс/Salon/App/ViewData.dfm",
+		"/G/Проекты/БД 3 курс/Salon/App/Report.dfm",
+		"/G/Проекты/БД 3 курс/Salon/App/Report.ddp",
+		"/C/Users/Kartoshechka/Desktop/Новый текстовый документ.txt",
+		"/G/Проекты/Git/ComputerService/MasterBot/strings.py",
+		"/G/Проекты/Git/ComputerService/MasterBot/bd_info.py",
+		"/G/Проекты/Git/ComputerService/MasterBot/bot_info.py",
+		"/G/Проекты/БД 3 курс/Salon/App/Report.pas",
+		"/G/Проекты/Тестовая оболочка костыльная/Unit2.pas",
+		"/G/Проекты/Git/ComputerService/MasterBot/MasterBot.py",
+		"/G/Проекты/Git/ComputerService/MasterBot/buttons.py",
+		"/G/Проекты/Git/ComputerService/ComputerService/MainForm.cs",
+		"/G/Проекты/Тестовая оболочка костыльная/Unit3.pas",
+		"/G/Проекты/C#/UMMLBook/UMMLBook/Forms/TestForm.cs",
+		"/G/Проекты/C#/UMMLBook/UMMLBook/Forms/TestingForm.cs",
+		"/G/Проекты/БД 3 курс/Salon/App/Main.pas",
+		"/C/Users/Kartoshechka/Desktop/Marvels.Jessica.Jones.S02E13.1080p.rus.LostFilm.TV.mkv.torrent",
+		"/G/Проекты/Git/ComputerService/ComputerService/OrderForm.cs",
+		"/C/OpenSSL/tsget",
+		"/G/Проекты/Bot python/MasterBot/MasterBot/MasterBot.py",
+		"/C/Users/Kartoshechka/Desktop/computerservice.sql",
+		"/G/Проекты/C#/BrowserOnChromium/BrowserOnChromium/Resources/downloads.html",
+		"/C/Users/Kartoshechka/Desktop/Бот документация/сценарии.txt",
+		"/G/Проекты/C#/Notepad/Notepad/FormNotepad.cs",
+		"/C/Users/Kartoshechka/Desktop/Новый текстовый документ (3).txt",
+		"/G/Проекты/Git/ComputerService/MasterBot/__pycache__/MasterBot.cpython-36.pyc",
+		"/C/Users/Kartoshechka/Desktop/Новый текстовый документ (2).txt",
+		"/C/OpenSSL/README",
+		"/G/Проекты/C#/ComputerService/ComputerService/computerserviceDataSet.xsc",
+		"/G/Проекты/C#/ComputerService/ComputerService/computerserviceDataSet.xss",
+		"/C/Users/Kartoshechka/Desktop/webhook_cert.pem",
+		"/C/Users/Kartoshechka/Desktop/webhook_pkey.key",
+		"/C/Users/Kartoshechka/Desktop/Лабораторные работы/Си++/2/2/2.cpp",
+		"/C/Users/Kartoshechka/Desktop/WS/итоговое для нацфинала 2016/TP09_resources/WSR2016_TP09_ресурсы_сессия_1/marathon-skills-2016-database-mssql.sql",
+		"/C/Users/Kartoshechka/Desktop/marathon-skills-2016-timesheet-import.txt",
+		"/C/Users/Kartoshechka/Desktop/позишн.txt",
+		"/C/Users/Kartoshechka/Desktop/marathon-skills-2016-staff-import.txt",
+		"/C/Users/Kartoshechka/Desktop/WS/итоговое для нацфинала 2016/TP09_resources/WSR2016_TP09_ресурсы_сессия_1/marathon-skills-2016-staff-import/marathon-skills-2016-staff-import.txt",
+		"/C/Users/Kartoshechka/Desktop/Бот документация/бд.txt",
+		"/G/Проекты/Bot python/MasterBot/MasterBot/bd_info.py",
+		"/G/Проекты/C#/UMMLBook/UMMLBook/Forms/MainForm.cs",
+		"/G/Проекты/C#/MobileShop/MobileShop/AdminForm.cs",
+		"/C/Users/Kartoshechka/Desktop/Бот документация/функц.txt",
+		"/C/Users/Kartoshechka/Desktop/функц",
+		"/C/Users/Kartoshechka/Desktop/типы.txt",
+		"/G/Проекты/Bot python/bot.py",
+		"/C/Users/Kartoshechka/AppData/Roaming/Sublime Text 3/Packages/User/PythonCMD.sublime-build",
+		"/C/Users/Kartoshechka/Desktop/браузер/SharpBrowser-master/src/MainForm.cs",
+		"/G/Projects/chromeDebug/Resources/downloads.html",
+		"/C/Users/Kartoshechka/Desktop/Результаты тестирования от 16.12.2017.html",
+		"/C/xampp/htdocs/1/style.css",
+		"/C/xampp/htdocs/1/index.html",
+		"/G/Проекты/C#/BrowserOnChromium/BrowserOnChromium/Forms/FormBrowser.cs",
+		"/C/Users/Kartoshechka/Desktop/k.html",
+		"/G/Проекты/C#/UMMLBook/UMMLBook/Data/Database_log.ldf",
+		"/C/Users/Kartoshechka/Desktop/kek.php",
+		"/G/Games/Counter-Strike Source v34/cstrike/cfg/skill1.cfg",
+		"/G/Games/Counter-Strike Source v34/cstrike/cfg/config_default.cfg",
+		"/G/Games/Counter-Strike Source v34/cstrike/cfg/ai.cfg",
+		"/G/Проекты/C#/BrowserOnChromium/BrowserOnChromium/Forms/FormBrowser.Designer.cs",
+		"/C/Users/Kartoshechka/Desktop/1.html",
+		"/C/Users/Kartoshechka/Desktop/header1.xml",
+		"/C/xampp/php/php.ini",
+		"/C/Users/Kartoshechka/Desktop/итоговое для нацфинала 2016/TP09_resources/WSR2016_TP09_ресурсы_сессия_1/marathon-skills-2016-staff-import/marathon-skills-2016-staff-import.txt",
+		"/C/xampp/htdocs/applications.html",
+		"/C/xampp/apache/conf/extra/httpd-ssl.conf",
+		"/C/Users/Kartoshechka/Desktop/index.html",
+		"/C/Users/Kartoshechka/Desktop/style.css",
+		"/C/Users/Kartoshechka/Desktop/КЗ_Программные решения для бизнеса/КЗ_Программные решения для бизнеса/Ресурсы/WSR2016_TP09_ресурсы_сессия_1/marathon-skills-2016-database-mssql.sql",
+		"/C/Users/Kartoshechka/Desktop/итоговое для нацфинала 2016/TP09_resources/WSR2016_TP09_ресурсы_сессия_1/marathon-skills-2016-database-mssql.sql",
+		"/C/Users/Kartoshechka/Desktop/итоговое для нацфинала 2016/TP09_resources/WSR2016_TP09_ресурсы_сессия_1/marathon-skills-2016-database-mysql.sql",
+		"/C/Users/Kartoshechka/Desktop/SharpBrowser-master/src/storage/downloads.html",
+		"/C/Users/Kartoshechka/Desktop/SharpBrowser-master/src/MainForm.cs",
+		"/G/Установки/quake_3_arena-rip-Q3A/Q3A/cpma/q3config.cfg",
+		"/G/Проекты/C#/TestBD/TestBD/Form1.cs",
+		"/G/Projects/chromeDebug/Resources/history.json",
+		"/C/Users/Kartoshechka/Desktop/SharpBrowser-master/src/Handlers/HostHandler.cs",
+		"/C/Users/Kartoshechka/Desktop/SharpBrowser-master/src/storage/jquery-1.10.2.min.js",
+		"/C/Users/Kartoshechka/Desktop/SharpBrowser-master/src/storage/text_defaults.css",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/G/Projects/chromeDebug/Resources/downloads.json",
+		"/G/Projects/chromeDebug/Resources/Settings.html",
+		"/C/Users/Kartoshechka/Desktop/SharpBrowser-master/src/Handlers/DownloadHandler.cs",
+		"/C/bin/x86/Debug/Resources/downloads.json",
+		"/C/bin/x86/Debug/Resources/Settings.html",
+		"/G/Прошивки/SP_Flash_Tool_exe_Windows_v5.1648.00.000/razar/MT6737T_Android_scatter.txt",
+		"/C/Users/Kartoshechka/Desktop/MT6737T_Android_scatter.txt.html",
+		"/G/Проекты/C#/BrowserOnChromium/BrowserOnChromium/bin/x86/Debug/Resources/downloads.json",
+		"/E/bin/storage/errors/cannotConnect.html",
+		"/E/bin/storage/downloads.html",
+		"/G/Проекты/C#/BrowserOnChromium/BrowserOnChromium/bin/x86/Debug/BrowserOnChromium.exe.config",
+		"/C/Users/Kartoshechka/Desktop/SharpBrowser-master/src/Data/JSON.cs",
+		"/G/Проекты/C#/BrowserOnChromium/BrowserOnChromium/bin/x86/Debug/Resources/Settings.html",
+		"/C/Users/Kartoshechka/Desktop/SharpBrowser-master/src/Handlers/SchemeHandler.cs",
+		"/C/Users/Kartoshechka/Desktop/TorBrowser/TorBrowser/MainForm.cs",
+		"/C/Users/Kartoshechka/Desktop/TorBrowser/TorBrowser/DownloadHandler.cs",
+		"/C/Users/Kartoshechka/Desktop/TorBrowser/TorBrowser/SchemeHandler.cs",
+		"/C/Users/Kartoshechka/Desktop/TorBrowser/TorBrowser/KeyboardHandler.cs",
+		"/C/Users/Kartoshechka/Desktop/TorBrowser/TorBrowser/LifeSpanHandler.cs",
+		"/C/Users/Kartoshechka/Desktop/TorBrowser/TorBrowser/Properties/Settings.settings",
+		"/C/Users/Kartoshechka/Desktop/TorBrowser/TorBrowser/storage/downloads.htm",
+		"/C/Users/Kartoshechka/Desktop/TorBrowser/.gitattributes",
+		"/C/Users/Kartoshechka/Desktop/1.xml",
+		"/C/Users/Kartoshechka/AppData/Local/Yandex/YandexBrowser/Application/17.7.1.724/resources/easylist/manifest.json",
+		"/G/Проекты/C#/BrowserOnChromium/BrowserOnChromium/bin/x86/Debug/Cache/Cookies",
+		"/C/Users/Kartoshechka/Desktop/FlickrPhotoViewer.xaml.cs"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "game/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 530,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								300,
+								300
+							]
+						],
+						"settings":
+						{
+							"SL.13.region_keys":
+							[
+							],
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/xampp/htdocs/backup/applications.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3607,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1083.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/G/Проекты/КрестыДаНули/Unit1.pas",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13489,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12653,
+								12653
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Pascal/Pascal.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 9918.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/G/Проекты/Делфи лабы/36/Unit1.pas",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3590,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								327,
+								333
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Pascal/Pascal.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2736.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/xampp/htdocs/login.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1077,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								821,
+								821
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/Kartoshechka/Desktop/Лаба 3 по C#/Laba3.sln",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1085,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								226,
+								226
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 285.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "game/assets/app.css",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 84,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 126.0
+	},
+	"output.exec":
+	{
+		"height": 132.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 507.0
+	},
+	"pinned_build_system": "Packages/User/PythonCMD.sublime-build",
+	"project": "project.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 202.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

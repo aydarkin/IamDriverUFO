@@ -1,9 +1,0 @@
-{
-  "name": "phaser-test",
-  "version": "0.0.0",
-  "description": "PhaserTest",
-  "main": "server.js",
-  "author": {
-    "name": ""
-  }
-}
