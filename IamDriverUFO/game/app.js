@@ -51,10 +51,10 @@ class Player extends Phaser.Sprite {
         //cursors = game.input.keyboard.createCursorKeys();
 
         if (cursors.left.isDown || this.isLeft) {
-            this.body.velocity.x = -150;
+            this.body.velocity.x = -250;
         }
         else if (cursors.right.isDown || this.isRight) {
-            this.body.velocity.x = 150;
+            this.body.velocity.x = 250;
         }
 
         if ((cursors.up.isDown || this.isJump) && this.body.touching.down ) {
@@ -167,7 +167,7 @@ var MainGame = {
         let sky = game.add.tileSprite(0, 0, 24000, 2000, 'sky');
 
         //ground = game.add.sprite(0, game.world.height - 50, 'ground'); //временно
-        ground = game.add.tileSprite(0, game.world.height - 150, 24000, 150, 'ground');
+        ground = game.add.tileSprite(0, game.world.height - 300, 24000, 300, 'ground');
 
         game.physics.arcade.enable(ground); //создает тело объекту
         ground.body.setSize(24000, 0, 0, 50);
@@ -177,14 +177,14 @@ var MainGame = {
         //горы
         let rocks = game.add.group(); 
         
-        let rock_background = rocks.create(0, game.world.height - 632, 'rock_background');
-        let rock_background_1 = rocks.create(10950, game.world.height - 632, 'rock_background');
+        let rock_background = rocks.create(0, game.world.height - 742, 'rock_background');
+        let rock_background_1 = rocks.create(7338, game.world.height - 742, 'rock_background');
 
-        let rocks_middle = rocks.create(0, game.world.height - 603, 'rocks_middle');
-        let rocks_middle1 = rocks.create(10950, game.world.height - 603, 'rocks_middle');
+        let rocks_middle = rocks.create(0, game.world.height - 714, 'rocks_middle');
+        let rocks_middle1 = rocks.create(7337, game.world.height - 714, 'rocks_middle');
 
-        let rocks_foreground = rocks.create(0, game.world.height - 541, 'rocks_foreground');
-        let rocks_foreground1 = rocks.create(10950, game.world.height - 541, 'rocks_foreground');
+        let rocks_foreground = rocks.create(0, game.world.height - 657, 'rocks_foreground');
+        let rocks_foreground1 = rocks.create(7337, game.world.height - 657, 'rocks_foreground');
 
         //дома
         house = game.add.group();
@@ -216,7 +216,7 @@ var MainGame = {
 
   
         //настройка игрока
-        player = new Player(game, 4100, game.world.height - 850, 'player');
+        player = new Player(game, 7337, game.world.height - 850, 'player');
         game.camera.follow(player);
 
         
