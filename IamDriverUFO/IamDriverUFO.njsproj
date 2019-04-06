@@ -54,8 +54,10 @@
       <Publish>False</Publish>
     </Content>
     <Content Include="game\assets\player.png" />
-    <Content Include="game\assets\sky.png" />
     <Content Include="game\assets\small_house.png" />
+    <Content Include="game\assets\UI\new_game.png" />
+    <Content Include="game\assets\UI\resume.png" />
+    <Content Include="game\assets\UI\settings.png" />
     <Content Include="game\assets\UI\sound.png" />
     <Content Include="game\assets\UI\start.png" />
     <Content Include="game\assets\UI\UI_A.png" />
