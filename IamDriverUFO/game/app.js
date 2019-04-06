@@ -7,7 +7,8 @@ let config = {
 };
 
 
-var game = new Phaser.Game(config.targetWidth, config.targetHeight, Phaser.CANVAS);
+
+var game = new Phaser.Game(config.targetWidth, config.targetHeight, Phaser.AUTO);
 
 let player;  //игрок
 let cursors; //кнопки стрелок
@@ -23,7 +24,7 @@ class Player extends Phaser.Sprite {
         game.physics.arcade.enable(this);
         this.body.health = 100;
         this.body.speed = 100;
-        this.body.bounce.y = 0.1;
+        this.body.bounce.y = 0.0;
         this.body.gravity.y = 800;
         this.anchor.setTo(0.5, 0.5); //центровка якоря в игроке
         //this.body.setSize(100, 270, 0, 0);
@@ -51,10 +52,10 @@ class Player extends Phaser.Sprite {
         //cursors = game.input.keyboard.createCursorKeys();
 
         if (cursors.left.isDown || this.isLeft) {
-            this.body.velocity.x = -250;
+            this.body.velocity.x = -240;
         }
         else if (cursors.right.isDown || this.isRight) {
-            this.body.velocity.x = 250;
+            this.body.velocity.x = 240;
         }
 
         if ((cursors.up.isDown || this.isJump) && this.body.touching.down ) {
@@ -137,7 +138,7 @@ var IntroGame = {
     }
 }
  
-let house; // группа домов
+let houses; // группа домов
 let ground; // группа поверхностей земля
 let debug_home; //отлаживаемый объект
 
@@ -151,15 +152,24 @@ var MainGame = {
         //уровень
         game.load.image('sky', 'assets/sky.png');
         game.load.image('rock_background', 'assets/rock_background.png');   
-        game.load.image('rocks_middle', 'assets/rocks_middle.png');
+        game.load.image('rocks_middle', 'assets/rocks_middle.png');  
         game.load.image('rocks_foreground', 'assets/rocks_foreground.png');        
         game.load.image('ground', 'assets/land.png');
-
+        //домики
         game.load.image('small_house', 'assets/small_house.png');
         game.load.image('big_house', 'assets/big_house.png');
+        game.load.image('house_red', 'assets/house_red.png');
+        game.load.image('house_green', 'assets/house_green.png'); 
+        game.load.image('house_orange1', 'assets/house_orange1.png'); 
+        game.load.image('house_orange2', 'assets/house_orange2.png'); 
+        game.load.image('house_orange3', 'assets/house_orange3.png'); 
+        game.load.image('house_orange', 'assets/house_orange.png');
+        game.load.image('big_house_orange', 'assets/big_house_orange.png');
 
         //игрок
         game.load.image('player', 'assets/player.png');
+        //game.load.spritesheet('player_pokoi', 'assets/animations/pokoi.png', 219, 425);
+        
 
         //наэкранные кнопки
         if (tools.isMobile()) {
@@ -174,10 +184,10 @@ var MainGame = {
     create: function () {
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        game.world.setBounds(0, 0, 24000, 2000);
+        game.world.setBounds(0, 0, 24000, 2300);
 
         //небо
-        let sky = game.add.tileSprite(0, 0, 24000, 2000, 'sky');
+       // let sky = game.add.tileSprite(0, 0, 24000, 2000, 'sky');
 
         //ground = game.add.sprite(0, game.world.height - 50, 'ground'); //временно
         ground = game.add.tileSprite(0, game.world.height - 300, 24000, 300, 'ground');
@@ -200,36 +210,142 @@ var MainGame = {
         let rocks_foreground1 = rocks.create(7337, game.world.height - 657, 'rocks_foreground');
 
         //дома
-        house = game.add.group();
-        
-        let small_house = house.create(4100, game.world.height - 444, 'small_house');
-        debug_home = small_house; //для отладки
-        game.physics.arcade.enable(small_house); 
+        houses = game.add.group();
+        houses.enableBody = true;
+        houses.physicsBodyType = Phaser.Physics.ARCADE;
+        let small_house;
+        let big_house;
+        let green_house;
+        let red_house;
+            //конструктор домов 
+        function configureHouse(house, type) {
+            //1 - small, 2 -big , 3 - red, 4 - green
+            switch (type) {
+                case 1:
+                    house.body.setSize(195, 0, 10, 3);
+                break;
 
-        small_house.body.setSize(290, 1, 0, 3);
+                case 2:
+                    house.body.setSize(210, 0, 23, 2);
+                break;
 
-        small_house.body.checkCollision.down = false;
-        small_house.body.checkCollision.left = false;
-        small_house.body.checkCollision.right = false;
+                case 3:
+                    house.body.setSize(295, 0, 0, 2);
+                break;
 
-        small_house.body.collideWorldBounds = true;
-        small_house.body.immovable = true;
+                case 4:
+                    house.body.setSize(240, 0, 2, 2);
+                break;
 
-        let big_house = house.create(4500, game.world.height - 704, 'big_house');
-        game.physics.arcade.enable(big_house); 
-        big_house.body.setSize(388, 1, 0, 0);
+                default:
+                break;
+            }
+            house.body.checkCollision.down = false;
+            house.body.checkCollision.left = false;
+            house.body.checkCollision.right = false;
+            house.body.collideWorldBounds = true;
+            house.body.immovable = true;
+        }
 
-        big_house.body.checkCollision.down = false;
-        big_house.body.checkCollision.left = false;
-        big_house.body.checkCollision.right = false;
+        //TODO потом оптимизировать
+        ////buildings в файле houses.js
+        //for (let building in buildings) {
+        //    let x = buildings[building].attributes.left;
+        //    let y = buildings[building].attributes.top;
+        //    let height = buildings[building].attributes.height; //по высоте проверять будем
+        //    //тут выбор типа
+        //    let type = 'small_house';
+        //    let id = 1;
+        //    if (height < 50) {
+        //        continue;
+        //    }
+        //    if (height > 60 && height < 65) {
+        //        //коробка
+        //        type = 'small_house';
+        //        id = 1;
+        //    }
 
-        big_house.body.collideWorldBounds = true;
-        big_house.body.immovable = true;
+        //    if (height > 365 && height < 370) {
+        //        type = 'big_house';
+        //        id = 2;
+        //    }
+        //    if (height > 205 && height < 210) {
+        //        type = 'house_red';
+        //        id = 3;
+        //    }
+        //    if (height > 235 && height < 240) {
+        //        type = 'small_house';
+        //        id = 1;
+        //    }
+        //    if (height > 500 && height < 505) {
+        //        type = 'house_green';
+        //        id = 4;
+        //    }
+            //if (height > 500 && height > 505) {
+            //    type = 'house_orange';
+            //    id = 4;
+            //}
+            //if (height > 500 && height > 505) {
+            //    type = 'house_orange1';
+            //    id = 4;
+            //}
+            //if (height > 500 && height > 505) {
+            //    type = 'house_orange2';
+            //    id = 4;
+            //}
+            //if (height > 500 && height > 505) {
+            //    type = 'house_orange3';
+            //    id = 4;
+            //}
+            //if (height > 500 && height > 505) {
+            //    type = 'big_house_orange';
+            //    id = 4;
+            //}
 
 
+        //    let _house = houses.create(x, y + 99, type);
+        //    configureHouse(_house, id);
+        //}
+
+        small_house = houses.create(4109, game.world.height - 500, 'small_house');
+        configureHouse(small_house, 1);
+        big_house = houses.create(4316, game.world.height - 625, 'big_house');
+        configureHouse(big_house, 2);
+        green_house = houses.create(4723, game.world.height - 760, 'house_green');
+        configureHouse(green_house, 4); 
+        red_house = houses.create(4954, game.world.height - 468, 'house_red');
+        configureHouse(red_house, 3);
+        big_house = houses.create(5254, game.world.height - 625, 'big_house');
+        configureHouse(big_house, 2);
+        green_house = houses.create(5641, game.world.height - 760, 'house_orange1');
+        configureHouse(green_house, 4); 
+        green_house = houses.create(5830, game.world.height - 760, 'house_orange2');
+        configureHouse(green_house, 4);
+        green_house = houses.create(6039, game.world.height - 760, 'house_orange3');
+        configureHouse(green_house, 4);
+        red_house = houses.create(5700, game.world.height - 968, 'house_orange');
+        configureHouse(red_house, 3);
+        big_house = houses.create(6000, game.world.height - 1130, 'big_house_orange');
+        configureHouse(big_house, 2);
+        big_house = houses.create(6428, game.world.height - 625, 'big_house');
+        configureHouse(big_house, 2);
+        small_house = houses.create(6680, game.world.height - 500, 'small_house');
+        configureHouse(small_house, 1);
+        red_house = houses.create(6421, game.world.height - 833, 'house_red');
+        configureHouse(red_house, 3);
+        green_house = houses.create(7530, game.world.height - 760, 'house_green');
+        configureHouse(green_house, 4); 
+        big_house = houses.create(7791, game.world.height - 625, 'big_house');
+        configureHouse(big_house, 2);
+        small_house = houses.create(7811, game.world.height - 868, 'small_house');
+        configureHouse(small_house, 1);
+
+        //debug_home = small_house ; //для отладки
   
         //настройка игрока
-        player = new Player(game, 7337, game.world.height - 850, 'player');
+        player = new Player(game, 4100, game.world.height - 850, 'player');
+        //player.animations.add('stay');
+        //player.animations.play('stay', 15, true);
         game.camera.follow(player);
 
         
@@ -264,14 +380,14 @@ var MainGame = {
     },
 
     update: function () {
-        game.physics.arcade.collide(house, player);
+        game.physics.arcade.collide(houses, player);
     },
 
     render: function () {
-        game.debug.body(debug_home); //посмотреть другие 
-        game.debug.body(ground);
-        game.debug.spriteInfo(player, 600, 32);
-        game.debug.spriteInfo(ground, 32, 32);
+        //game.debug.body(debug_home); //посмотреть другие 
+        //game.debug.body(ground);
+        //game.debug.spriteInfo(player, 600, 32);
+        //game.debug.spriteInfo(ground, 32, 32);
         //game.debug.spriteBounds(player);
     }
 }

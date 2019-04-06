@@ -40,15 +40,22 @@
     <Content Include="game\assets\app.css">
       <Publish>False</Publish>
     </Content>
+    <Content Include="game\assets\big_house.png" />
+    <Content Include="game\assets\big_house_orange.png" />
     <Content Include="game\assets\ground.png" />
+    <Content Include="game\assets\houses.js" />
+    <Content Include="game\assets\house_green.png" />
+    <Content Include="game\assets\house_orange.png" />
+    <Content Include="game\assets\house_orange1.png" />
+    <Content Include="game\assets\house_orange2.png" />
+    <Content Include="game\assets\house_orange3.png" />
+    <Content Include="game\assets\house_red.png" />
     <Content Include="game\assets\logo.png">
       <Publish>False</Publish>
     </Content>
     <Content Include="game\assets\player.png" />
-    <Content Include="game\assets\preloader-bar.png">
-      <Publish>False</Publish>
-    </Content>
     <Content Include="game\assets\sky.png" />
+    <Content Include="game\assets\small_house.png" />
     <Content Include="game\assets\UI\sound.png" />
     <Content Include="game\assets\UI\start.png" />
     <Content Include="game\assets\UI\UI_A.png" />
