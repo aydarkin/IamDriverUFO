@@ -156,9 +156,18 @@ var MainGame = {
         game.load.image('rocks_foreground', 'assets/rocks_foreground.png');        
         game.load.image('ground', 'assets/land.png');
         //домики
-        game.load.image('small_house', 'assets/small_house.png');
+        game.load.image('small_house', 'assets/small_house.png'); 
+        game.load.image('small_house_mirrored', 'assets/small_house_mirrored.png');
+        game.load.image('small_transparent _house', 'assets/small_transparent _house.png');
+        game.load.image('transparent_house_green', 'assets/transparent_house_green.png'); 
         game.load.image('big_house', 'assets/big_house.png');
+        game.load.image('house_purple_right', 'assets/house_purple_right.png');
+        game.load.image('house_purple_left', 'assets/house_purple_left.png');
+        game.load.image('purple_big_house_right', 'assets/purple_big_house_right.png');
+        game.load.image('purple_big_house_left', 'assets/purple_big_house_left.png');
+        game.load.image('transparent_big_house', 'assets/transparent_big_house.png');
         game.load.image('house_red', 'assets/house_red.png');
+        game.load.image('transparent_house_red', 'assets/transparent_house_red.png');
         game.load.image('house_green', 'assets/house_green.png'); 
         game.load.image('house_orange1', 'assets/house_orange1.png'); 
         game.load.image('house_orange2', 'assets/house_orange2.png'); 
@@ -333,17 +342,62 @@ var MainGame = {
         configureHouse(small_house, 1);
         red_house = houses.create(6421, game.world.height - 833, 'house_red');
         configureHouse(red_house, 3);
-        green_house = houses.create(7530, game.world.height - 760, 'house_green');
+        green_house = houses.create(7530, game.world.height - 800, 'transparent_house_green');
         configureHouse(green_house, 4); 
-        big_house = houses.create(7791, game.world.height - 625, 'big_house');
+        big_house = houses.create(7791, game.world.height - 667, 'transparent_big_house');
         configureHouse(big_house, 2);
-        small_house = houses.create(7811, game.world.height - 868, 'small_house');
+        small_house = houses.create(7811, game.world.height - 910, 'small_transparent _house');
         configureHouse(small_house, 1);
-
+        big_house = houses.create(8263, game.world.height - 624, 'big_house');
+        configureHouse(big_house, 2);
+        small_house = houses.create(8299, game.world.height - 865, 'small_house');
+        configureHouse(small_house, 1);
+        red_house = houses.create(8518, game.world.height - 468, 'house_red');
+        configureHouse(red_house, 3);
+        green_house = houses.create(8580, game.world.height - 970, 'transparent_house_green');
+        configureHouse(green_house, 4); 
+        big_house = houses.create(8569, game.world.height - 1340, 'transparent_big_house');
+        configureHouse(big_house, 2);
+        small_house = houses.create(8855, game.world.height - 500, 'small_house');
+        configureHouse(small_house, 1);
+        small_house = houses.create(8933, game.world.height - 740, 'small_house_mirrored');
+        configureHouse(small_house, 1);
+        small_house = houses.create(8855, game.world.height - 982, 'small_house');
+        configureHouse(small_house, 1); 
+        big_house = houses.create(9164, game.world.height - 625, 'purple_big_house_right');
+        configureHouse(big_house, 2);
+        big_house = houses.create(9401, game.world.height - 625, 'purple_big_house_left');
+        configureHouse(big_house, 2);
+        red_house = houses.create(9254, game.world.height - 834, 'house_red');
+        configureHouse(red_house, 3);
+        green_house = houses.create(9848, game.world.height - 760, 'transparent_house_green');
+        configureHouse(green_house, 4); 
+        green_house = houses.create(9848, game.world.height - 1263, 'house_green');
+        configureHouse(green_house, 4); 
+        big_house = houses.create(10119, game.world.height - 625, 'big_house');
+        configureHouse(big_house, 2);
+        small_house = houses.create(10130, game.world.height - 868, 'small_house');
+        configureHouse(small_house, 1);
+        red_house = houses.create(10412, game.world.height - 468, 'house_red');
+        configureHouse(red_house, 3);
+        red_house = houses.create(10710, game.world.height - 478, 'transparent_house_red');
+        configureHouse(red_house, 3);
+        small_house = houses.create(11044, game.world.height - 520, 'small_transparent _house');
+        configureHouse(small_house, 1);
+        small_house = houses.create(11044, game.world.height - 760, 'small_transparent _house');
+        configureHouse(small_house, 1);
+        red_house = houses.create(11290, game.world.height - 478, 'transparent_house_red');
+        configureHouse(red_house, 3);
+        small_house = houses.create(11668, game.world.height - 500, 'small_house');
+        configureHouse(small_house, 1);
+        big_house = houses.create(11897, game.world.height - 770, 'house_purple_left');
+        configureHouse(big_house, 2);
+        big_house = houses.create(12090, game.world.height - 770, 'house_purple_right');
+        configureHouse(big_house, 2);
         //debug_home = small_house ; //для отладки
-  
+        
         //настройка игрока
-        player = new Player(game, 4100, game.world.height - 850, 'player');
+        player = new Player(game, 8000, game.world.height - 850, 'player');
         //player.animations.add('stay');
         //player.animations.play('stay', 15, true);
         game.camera.follow(player);
