@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "express": "^4.16.4",
-    "phaser-ce": "^2.12.0"
+    "phaser-ce": "^2.12.0",
+    "phaser-dragonbones": "0.0.3"
   }
 }

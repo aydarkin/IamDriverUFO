@@ -4,7 +4,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>IamDriverUFO</Name>
     <RootNamespace>PhaserTest</RootNamespace>
-    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
     <LaunchUrl>
     </LaunchUrl>
@@ -34,12 +34,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="game\app.js" />
+    <Compile Include="game\assets\libs\dragonBones.min.js" />
     <Compile Include="game\assets\phaser.js" />
     <Compile Include="game\assets\phaser2.js" />
     <Compile Include="server.js" />
     <Content Include="game\assets\app.css">
       <Publish>False</Publish>
     </Content>
+    <Content Include="game\assets\background.jpg" />
     <Content Include="game\assets\big_house.png" />
     <Content Include="game\assets\big_house_orange.png" />
     <Content Include="game\assets\ground.png" />
@@ -73,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="game\assets\" />
+    <Folder Include="game\assets\libs\" />
     <Folder Include="game\assets\UI\" />
     <Folder Include="game\assets\spritesheets\" />
     <Folder Include="game\assets\tilemaps\" />
