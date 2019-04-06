@@ -8,7 +8,8 @@ let config = {
 
 
 
-var game = new Phaser.Game(config.targetWidth, config.targetHeight, Phaser.AUTO);
+var game = new Phaser.Game(config.targetWidth, config.targetHeight, Phaser.CANVAS);
+game.dragonBonesPlugin = game.plugins.add(Rift.DragonBonesPlugin); //добавление плагина Dragon Bones
 
 let player;  //игрок
 let cursors; //кнопки стрелок
@@ -52,10 +53,10 @@ class Player extends Phaser.Sprite {
         //cursors = game.input.keyboard.createCursorKeys();
 
         if (cursors.left.isDown || this.isLeft) {
-            this.body.velocity.x = -240;
+            this.body.velocity.x = -300;
         }
         else if (cursors.right.isDown || this.isRight) {
-            this.body.velocity.x = 240;
+            this.body.velocity.x = 300;
         }
 
         if ((cursors.up.isDown || this.isJump) && this.body.touching.down ) {
@@ -88,6 +89,7 @@ var IntroGame = {
         game.load.spritesheet('newGameButton', 'assets/UI/new_game.png', 405, 178);
         game.load.spritesheet('sound', 'assets/UI/sound.png', 405, 178);
         game.load.image('logo', 'assets/logo.png', 500, 300)
+        game.load.image('background', 'assets/background.jpg')
     },
 
     newGameButton: null,
@@ -98,7 +100,9 @@ var IntroGame = {
         this.scale.pageAlignHorisontally = true;
         this.scale.pageAlignVertically = true;
 
-        game.stage.backgroundColor = '#182d3b';
+        game.stage.backgroundColor = '#84c3be';
+        game.add.image(-2, -2, 'background');
+        
 
         //лого заглушка
         let logo = game.add.image(game.width / 2, 150, 'logo');
@@ -112,6 +116,8 @@ var IntroGame = {
         this.soundButton2 = game.add.button(game.width / 2 + 220, game.height - 120, 'sound', this.muteClick, this, 3, 3, 3);
         this.soundButton1.anchor.setTo(0.5, 0.5);
         this.soundButton2.anchor.setTo(0.5, 0.5);
+
+        
 
         //game.state.start('MainGame'); //отладка
     },
