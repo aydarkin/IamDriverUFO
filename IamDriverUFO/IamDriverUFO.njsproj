@@ -73,6 +73,7 @@
     <Content Include="game\assets\transparent_big_house.png" />
     <Content Include="game\assets\transparent_house_green.png" />
     <Content Include="game\assets\transparent_house_red.png" />
+    <Content Include="game\assets\UI\load.png" />
     <Content Include="game\assets\UI\new_game.png" />
     <Content Include="game\assets\UI\resume.png" />
     <Content Include="game\assets\UI\settings.png" />

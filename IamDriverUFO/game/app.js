@@ -117,9 +117,11 @@ class NPC extends Phaser.Sprite {
 var IntroGame = {
 
     preload: function () {
+        game.load.image('load', 'assets/UI/load.png');
         game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
 
         game.load.spritesheet('newGameButton', 'assets/UI/new_game.png', 405, 178);
+       
         game.load.spritesheet('sound', 'assets/UI/sound.png', 405, 178);
         game.load.image('background', 'assets/background.jpg');
         game.load.audio('menu_music', 'assets/audio/(main_menu)Kevin MacLeod - Phantom from Space.mp3');
@@ -134,7 +136,7 @@ var IntroGame = {
         this.scale.pageAlignHorisontally = true;
         this.scale.pageAlignVertically = true;
 
-        game.stage.backgroundColor = '#84c3be';
+        game.stage.backgroundColor = '#2e0648';
         let background = game.add.image(0, 0, 'background');
         background.anchor.setTo(0.5, 0.5);
         background.position.setTo(config.targetWidth / 2, config.targetHeight / 2);
@@ -191,6 +193,9 @@ let sky;
 var MainGame = {
 
     preload: function () {
+       
+        let logo = game.add.sprite(0, 0, 'load');
+
         //уровень
         game.load.image('rock_background', 'assets/rock_background.png');   
         game.load.image('rocks_middle', 'assets/rocks_middle.png');  
@@ -255,9 +260,9 @@ var MainGame = {
         //небо
         var myBitmap = game.add.bitmapData(game.world.width, game.world.height);
         var grd = myBitmap.context.createLinearGradient(0, 0, game.world.width, 0);
-        grd.addColorStop(0, "black");
-        grd.addColorStop(0.5, "white");
-        grd.addColorStop(1, "black");
+        grd.addColorStop(0, "#0b0540");
+        grd.addColorStop(0.5, "#99ccff");
+        grd.addColorStop(1, "#0b0540");
         myBitmap.context.fillStyle = grd;
         myBitmap.context.fillRect(0, 0, game.world.width, game.world.height);
         game.add.sprite(0, 0, myBitmap);
