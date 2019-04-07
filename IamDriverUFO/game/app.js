@@ -28,7 +28,7 @@ class Player extends Phaser.Sprite {
         this.animations.add('player_stay', Phaser.Animation.generateFrameNames('Stay_stay_', 0, 27, '.png', 2), 25, true);  //префикс имени, номер начала, номер конца, символы после цифр, количество цифр
         this.animations.add('walk', Phaser.Animation.generateFrameNames('Armature_walk_', 0, 16, '.png', 2), 16, true);
         this.animations.add('jump', Phaser.Animation.generateFrameNames('Jump_jump_', 0, 40, '.png', 2), 24, true);
-        this.animations.add('fire', Phaser.Animation.generateFrameNames('Jump_jump_', 0, 40, '.png', 2), 24, true);
+        this.animations.add('fire', Phaser.Animation.generateFrameNames('Fire_attack_', 0, 24, '.png', 2), 24, true);
 
 
         game.physics.arcade.enableBody(this);
@@ -184,11 +184,17 @@ let houses; // группа домов
 let ground; // группа поверхностей земля
 let debug_home; //отлаживаемый объект
 let spaceship;
+
 let tools = {
     isMobile: () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 }
 
-let sky;
+//фоны, для параллакса глобальные переменные
+let sky; 
+let rock_background;
+let rocks_middle;
+let rocks_foreground;
+
 
 var MainGame = {
 
@@ -278,21 +284,25 @@ var MainGame = {
 
         //горы
         let rocks = game.add.group(); 
-        
-        let rock_background = rocks.create(0, game.world.height - 742, 'rock_background');
-        rock_background = rocks.create(7338, game.world.height - 742, 'rock_background');
-        rock_background = rocks.create(14673, game.world.height - 742, 'rock_background');
-        rock_background = rocks.create(22010, game.world.height - 742, 'rock_background');
 
-        let rocks_middle = rocks.create(0, game.world.height - 714, 'rocks_middle');
-        rocks_middle = rocks.create(7337, game.world.height - 714, 'rocks_middle');
-        rocks_middle = rocks.create(14673, game.world.height - 714, 'rocks_middle');
-        rocks_middle = rocks.create(22010, game.world.height - 714, 'rocks_middle');
+        rock_background = [];
+        rock_background.push(rocks.create(0, game.world.height - 742, 'rock_background'));
+        rock_background.push(rocks.create(7338, game.world.height - 742, 'rock_background'));
+        rock_background.push(rocks.create(14673, game.world.height - 742, 'rock_background'));
+        rock_background.push(rocks.create(22010, game.world.height - 742, 'rock_background'));
 
-        let rocks_foreground = rocks.create(0, game.world.height - 657, 'rocks_foreground');
-        rocks_foreground = rocks.create(7337, game.world.height - 657, 'rocks_foreground');
-        rocks_foreground = rocks.create(14673, game.world.height - 657, 'rocks_foreground');
-        rocks_foreground = rocks.create(22010, game.world.height - 657, 'rocks_foreground');
+        rocks_middle = [];
+        rocks_middle.push(rocks.create(0, game.world.height - 714, 'rocks_middle'));
+        rocks_middle.push(rocks.create(7337, game.world.height - 714, 'rocks_middle'));
+        rocks_middle.push(rocks.create(14673, game.world.height - 714, 'rocks_middle'));
+        rocks_middle.push(rocks.create(22010, game.world.height - 714, 'rocks_middle'));
+
+        rocks_foreground = [];
+
+        rocks_foreground.push(rocks.create(0, game.world.height - 657, 'rocks_foreground'));
+        rocks_foreground.push(rocks.create(7337, game.world.height - 657, 'rocks_foreground'));
+        rocks_foreground.push(rocks.create(14673, game.world.height - 657, 'rocks_foreground'));
+        rocks_foreground.push(rocks.create(22010, game.world.height - 657, 'rocks_foreground'));
 
         spaceship = game.add.tileSprite(1000, game.world.height - 1000, 1232, 899, 'spaceship');
         //дома
@@ -651,6 +661,17 @@ var MainGame = {
 
     update: function () {
         game.physics.arcade.collide(houses, player);
+        //параллакс
+        for (var i in rock_background) {
+            rock_background[i].position.x = game.camera.position.x / 5 + i * 7337;
+        }
+        for (var i in rocks_middle) {
+            rocks_middle[i].position.x = game.camera.position.x / 15 + i * 7337;
+        }
+        for (var i in rocks_foreground) {
+            rocks_foreground[i].position.x = game.camera.position.x / 30 + i * 7337;
+        }
+
     },
 
     render: function () {
