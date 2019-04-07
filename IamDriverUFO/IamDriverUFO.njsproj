@@ -34,13 +34,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="game\app.js" />
-    <Compile Include="game\assets\libs\dragonBones.min.js" />
     <Compile Include="game\assets\phaser.js" />
     <Compile Include="game\assets\phaser2.js" />
     <Compile Include="server.js" />
+    <Content Include="game\assets\animation\anim1.json" />
+    <Content Include="game\assets\animation\anim1.png" />
     <Content Include="game\assets\app.css">
       <Publish>False</Publish>
     </Content>
+    <Content Include="game\assets\audio\%28main_menu%29Kevin MacLeod - Phantom from Space.mp3" />
+    <Content Include="game\assets\audio\game.mp3" />
     <Content Include="game\assets\background.jpg" />
     <Content Include="game\assets\big_house.png" />
     <Content Include="game\assets\big_house_orange.png" />
@@ -75,10 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="game\assets\" />
-    <Folder Include="game\assets\libs\" />
+    <Folder Include="game\assets\animation\" />
+    <Folder Include="game\assets\audio\" />
     <Folder Include="game\assets\UI\" />
-    <Folder Include="game\assets\spritesheets\" />
-    <Folder Include="game\assets\tilemaps\" />
     <Folder Include="game\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

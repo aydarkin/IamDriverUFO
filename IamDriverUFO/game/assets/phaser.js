@@ -16557,6 +16557,7 @@ Object.defineProperty(PIXI.Sprite.prototype, 'width', {
 
     get: function ()
     {
+    
         return this.scale.x * this.texture.frame.width;
     },
 
