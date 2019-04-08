@@ -625,7 +625,7 @@ var MainGame = {
 
 
         //настройка игрока
-        player = new Player(game, 8000, game.world.height - 850, 'player');
+        player = new Player(game, 1600, game.world.height - 850, 'player');
 
         //player = game.dragonBonesPlugin.getArmature('player');
         //player.position.setTo(8000, game.world.height - 850);
@@ -637,7 +637,7 @@ var MainGame = {
 
         //наэкранные кнопки (треюуется созданный игрок)
         if (tools.isMobile()) {
-            console.log(1);
+            //console.log(1);
 
             let buttonLeft = game.add.button(config.targetWidth / 22, config.targetHeight - 220, 'UI_left', null, this, 0, 0, 0);
             buttonLeft.scale.setTo(2, 2);
