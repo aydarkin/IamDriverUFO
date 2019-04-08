@@ -12,3 +12,8 @@ canvas {
     margin-left:auto;
     margin-right:auto;
 }
+
+@font-face {
+    font-family: 'Nord';
+    src: url('UI/nord.ttf') format('truetype');
+}

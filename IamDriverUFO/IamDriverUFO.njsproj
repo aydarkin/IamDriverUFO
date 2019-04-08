@@ -35,7 +35,6 @@
   <ItemGroup>
     <Compile Include="game\app.js" />
     <Compile Include="game\assets\phaser.js" />
-    <Compile Include="game\assets\phaser2.js" />
     <Compile Include="server.js" />
     <Content Include="game\assets\animation\anim1.json" />
     <Content Include="game\assets\animation\anim1.png" />
@@ -44,9 +43,11 @@
     </Content>
     <Content Include="game\assets\audio\%28main_menu%29Kevin MacLeod - Phantom from Space.mp3" />
     <Content Include="game\assets\audio\game.mp3" />
+    <Content Include="game\assets\audio\laser1.ogg" />
     <Content Include="game\assets\background.jpg" />
     <Content Include="game\assets\big_house.png" />
     <Content Include="game\assets\big_house_orange.png" />
+    <Content Include="game\assets\flash.png" />
     <Content Include="game\assets\ground.png" />
     <Content Include="game\assets\houses.js" />
     <Content Include="game\assets\house_green.png" />
@@ -59,9 +60,11 @@
     <Content Include="game\assets\house_red.png" />
     <Content Include="game\assets\house_red_left.png" />
     <Content Include="game\assets\house_red_right.png" />
+    <Content Include="game\assets\laser_anim.png" />
     <Content Include="game\assets\logo.png">
       <Publish>False</Publish>
     </Content>
+    <Content Include="game\assets\UI\nord.ttf" />
     <Content Include="game\assets\player.png" />
     <Content Include="game\assets\purple_big_house_left.png" />
     <Content Include="game\assets\purple_big_house_right.png" />
@@ -78,8 +81,8 @@
     <Content Include="game\assets\UI\resume.png" />
     <Content Include="game\assets\UI\settings.png" />
     <Content Include="game\assets\UI\sound.png" />
-    <Content Include="game\assets\UI\start.png" />
     <Content Include="game\assets\UI\UI_A.png" />
+    <Content Include="game\assets\UI\UI_F.png" />
     <Content Include="game\assets\UI\UI_left.png" />
     <Content Include="game\assets\UI\UI_right.png" />
     <Content Include="game\assets\UI\UI_X.png" />

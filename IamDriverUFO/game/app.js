@@ -12,14 +12,21 @@ var game = new Phaser.Game(config.targetWidth, config.targetHeight, Phaser.CANVA
 
 
 let player;  //игрок
+
 let cursors; //кнопки стрелок
-
-
+let fireButton; //кнопка выстрела (пробел)
+let actionButton;  //F
 
 class Player extends Phaser.Sprite {
 
     cursors = game.input.keyboard.createCursorKeys();
-    
+    fireButton = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
+    actionButton = game.input.keyboard.addKey(Phaser.KeyCode.F);
+
+    //оружие
+    weapon = game.add.weapon(1, 'bullet');
+    patrons = 2;
+
     constructor(game, x, y, texture){
         super(game, x, y, texture);
         this.scale.setTo(0.5, 0.5);
@@ -30,7 +37,6 @@ class Player extends Phaser.Sprite {
         this.animations.add('jump', Phaser.Animation.generateFrameNames('Jump_jump_', 0, 40, '.png', 2), 24, true);
         this.animations.add('fire', Phaser.Animation.generateFrameNames('Fire_attack_', 0, 24, '.png', 2), 24, true);
 
-
         game.physics.arcade.enableBody(this);
         this.body.setSize(150, 402, 50, 0);
         this.body.collideWorldBounds = true;
@@ -40,19 +46,32 @@ class Player extends Phaser.Sprite {
         this.body.gravity.y = 800;
 
         game.add.existing(this); // добавляет в игру
+        //настройка оружия
+        this.weapon.addBulletAnimation('laser_weapon',null, 24, true);
+        this.weapon.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
+        this.weapon.bulletSpeed = 1000;
     }
 
     //система кармы
+    //TODO синхронизировать логику с сюжетом
     karma = 0;
     
-
-
     //маркеры состояния (особенность движка)
     isLeft = false;
     isRight = false;
     isJump = false;
     isJumping = false;
+    isFire = false;
+    isShooting = false;
+    isFired = true;
+    isAction = false;
+
+    //таймеры
     timer = game.time.create(false);
+    timerFire = game.time.create(false);
+
+    //звуки
+    fire_sound = game.add.audio('laser', 1, false);
 
     update() {
         game.physics.arcade.collide(this, ground);
@@ -60,7 +79,7 @@ class Player extends Phaser.Sprite {
         this.body.velocity.x = 0;
         //cursors = game.input.keyboard.createCursorKeys();
 
-        if (cursors.left.isDown || this.isLeft) {
+        if ((cursors.left.isDown || this.isLeft) && !this.isShooting) {
             if (!this.isJumping || this.body.touching.down) {
                 this.body.setSize(150, 402, 50, 2);
                 this.animations.play('walk');
@@ -68,7 +87,7 @@ class Player extends Phaser.Sprite {
             this.scale.x = -0.5;
             this.body.velocity.x = -300;
         }
-        else if (cursors.right.isDown || this.isRight) {
+        else if ((cursors.right.isDown || this.isRight) && !this.isShooting) {
             if (!this.isJumping || this.body.touching.down) {
                 this.body.setSize(150, 402, 50, 2);
                 this.animations.play('walk');
@@ -77,7 +96,7 @@ class Player extends Phaser.Sprite {
             this.body.velocity.x = 300;
         }
 
-        if ((cursors.up.isDown || this.isJump) && this.body.touching.down ) {
+        if ((cursors.up.isDown || this.isJump) && this.body.touching.down && !this.isShooting) {
             this.body.velocity.y = -755;
             this.body.setSize(150, 370, 50, 100);
             this.animations.play('jump', 24, false);
@@ -92,8 +111,45 @@ class Player extends Phaser.Sprite {
             return;
         } 
 
-        if (this.body.velocity.x == 0 && !this.isJumping)
+        //выстрел
+        if ((fireButton.isDown || this.isFire) && this.body.touching.down && (this.patrons > 0)) {
+            this.animations.play('fire', 24, false);
+            this.timerFire.loop(770, () => {
+                
+                if (this.isShooting) {
+                    this.isShooting = false;
+ 
+                    this.body.setSize(180, 401, 0, 0);
+                    if (this.scale.x < 0) { //отражен ли спрайт по горизонтали
+                        this.weapon.trackSprite(this, -70, -50);
+                        this.weapon.fireAngle = 180;
+                    }
+                    else {
+                        this.weapon.trackSprite(this, 75, -50);
+                        this.weapon.fireAngle = 0;
+                    }  
+                    if (this.isFired) {
+                        this.weapon.fire();
+                        if (config.sound) this.fire_sound.play();
+                        this.patrons--;
+                    } 
+                } 
+                if (!this.isFired) {
+                    this.timerFire.stop();
+                    this.animations.play('player_stay');
+                    this.isFired = true;
+                }
+                else
+                    this.isFired = false;
+            }, this);
+            this.isShooting = true;
+            this.timerFire.start();   
+        }
+        if (this.body.velocity.x == 0 && !this.isJumping && !this.isShooting && this.isFired)
             this.animations.play('player_stay');
+    }
+
+    doAction() {
 
     }
 }
@@ -114,14 +170,11 @@ class NPC extends Phaser.Sprite {
     }
 }
 
-var IntroGame = {
+var MainMenu = {
 
     preload: function () {
         game.load.image('load', 'assets/UI/load.png');
-        game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
-
         game.load.spritesheet('newGameButton', 'assets/UI/new_game.png', 405, 178);
-       
         game.load.spritesheet('sound', 'assets/UI/sound.png', 405, 178);
         game.load.image('background', 'assets/background.jpg');
         game.load.audio('menu_music', 'assets/audio/(main_menu)Kevin MacLeod - Phantom from Space.mp3');
@@ -132,9 +185,11 @@ var IntroGame = {
     soundButton2: null,
     music_theme: null,
     create: function () {
+
+        //масштабирование игры под экран
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        this.scale.pageAlignHorisontally = true;
-        this.scale.pageAlignVertically = true;
+        game.scale.pageAlignHorisontally = true;
+        game.scale.pageAlignVertically = true;
 
         game.stage.backgroundColor = '#2e0648';
         let background = game.add.image(0, 0, 'background');
@@ -142,10 +197,9 @@ var IntroGame = {
         background.position.setTo(config.targetWidth / 2, config.targetHeight / 2);
         game.add.tween(background.scale).to({ x: 1.04, y: 1.04 }, 3500, Phaser.Easing.Sinusoidal.InOut, true, 2000, 20, true).loop(true);
 
-        //кнопка новая игра
+        //кнопки
         this.newGameButton = game.add.button(game.width / 2, game.height / 2 + 100, 'newGameButton', this.startClick, this, 0, 0, 0);
         this.newGameButton.anchor.setTo(0.5, 0.5); //якорь по центру
-
         this.soundButton1 = game.add.button(game.width / 2 - 220, game.height - 120, 'sound', this.soundClick, this, 0, 0, 0);
         this.soundButton2 = game.add.button(game.width / 2 + 220, game.height - 120, 'sound', this.muteClick, this, 3, 3, 3);
         this.soundButton1.anchor.setTo(0.5, 0.5);
@@ -162,7 +216,7 @@ var IntroGame = {
 
     startClick: function () {
         this.music_theme.stop();
-        game.state.start('MainGame');
+        game.state.start('IntroGame');
     },
 
     soundClick: function () {
@@ -186,7 +240,7 @@ let debug_home; //отлаживаемый объект
 let spaceship;
 
 let tools = {
-    isMobile: () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    isMobile: () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) //регулярное выражение
 }
 
 //фоны, для параллакса глобальные переменные
@@ -199,8 +253,8 @@ let rocks_foreground;
 var MainGame = {
 
     preload: function () {
-       
-        let logo = game.add.sprite(0, 0, 'load');
+        //экран загрузки
+        game.add.sprite(0, 0, 'load');
 
         //уровень
         game.load.image('rock_background', 'assets/rock_background.png');   
@@ -230,24 +284,28 @@ var MainGame = {
         game.load.image('house_orange', 'assets/house_orange.png');
         game.load.image('big_house_orange', 'assets/big_house_orange.png');
         game.load.image('spaceship', 'assets/spaceship.png');
+        game.load.image('flash', 'assets/flash.png');
 
         //игрок
         game.load.atlasJSONHash('player', 'assets/animation/anim1.png', 'assets/animation/anim1.json');
+        game.load.spritesheet('bullet', 'assets/laser_anim.png', 153, 38);
         //game.dragonBonesPlugin = game.plugins.add(Rift.DragonBonesPlugin);  //не работает, не поддерживается движком
         //game.SpinePlugin = game.add.plugin(PhaserSpine.SpinePlugin);  ////не работает, нет поддержки физики объекта
 
         //музыка
         game.load.audio('game_main', 'assets/audio/game.mp3');
+        game.load.audio('laser', 'assets/audio/laser1.ogg');
         
         cursors = game.input.keyboard.createCursorKeys();
+        fireButton = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
         //наэкранные кнопки
         if (tools.isMobile()) {
-            game.load.spritesheet('UI_left', 'assets/UI/UI_left.png', 80, 80);
-            game.load.spritesheet('UI_right', 'assets/UI/UI_right.png', 80, 80);
-            game.load.spritesheet('UI_A', 'assets/UI/UI_A.png', 80, 80);
-            game.load.spritesheet('UI_X', 'assets/UI/UI_X.png', 80, 80);
+            game.load.image('UI_left', 'assets/UI/UI_left.png');
+            game.load.image('UI_right', 'assets/UI/UI_right.png');
+            game.load.image('UI_A', 'assets/UI/UI_A.png');
+            game.load.image('UI_X', 'assets/UI/UI_X.png');
         }
-        
+        game.load.image('UI_F', 'assets/UI/UI_F.png');
     },
 
     showDialog: function (caption, text, textButton) {
@@ -255,8 +313,13 @@ var MainGame = {
     },
 
     music_theme: null,
-    create: function () {
 
+    //текстовые блоки
+    patrons_text: null,
+    health_text: null,
+
+    create: function () {
+        //музыка
         this.music_theme = game.add.audio('game_main', 1, true);
         if (config.sound) this.music_theme.play();
 
@@ -264,15 +327,14 @@ var MainGame = {
         game.world.setBounds(0, 0, 24000, 2300);
 
         //небо
-        var myBitmap = game.add.bitmapData(game.world.width, game.world.height);
-        var grd = myBitmap.context.createLinearGradient(0, 0, game.world.width, 0);
-        grd.addColorStop(0, "#0b0540");
-        grd.addColorStop(0.5, "#99ccff");
-        grd.addColorStop(1, "#0b0540");
-        myBitmap.context.fillStyle = grd;
-        myBitmap.context.fillRect(0, 0, game.world.width, game.world.height);
-        game.add.sprite(0, 0, myBitmap);
-       // let sky = game.add.tileSprite(0, 0, 24000, 2000, 'sky');
+        var bitmap = game.add.bitmapData(game.world.width, game.world.height);
+        var gradient = bitmap.context.createLinearGradient(0, 0, game.world.width, 0);
+        gradient.addColorStop(0, "#0b0540");
+        gradient.addColorStop(0.5, "#99ccff");
+        gradient.addColorStop(1, "#0b0540");
+        bitmap.context.fillStyle = gradient;
+        bitmap.context.fillRect(0, 0, game.world.width, game.world.height);
+        game.add.sprite(0, 0, bitmap);
 
         //ground = game.add.sprite(0, game.world.height - 50, 'ground'); //временно
         ground = game.add.tileSprite(0, game.world.height - 300, 24000, 300, 'ground');
@@ -304,7 +366,9 @@ var MainGame = {
         rocks_foreground.push(rocks.create(14673, game.world.height - 657, 'rocks_foreground'));
         rocks_foreground.push(rocks.create(22010, game.world.height - 657, 'rocks_foreground'));
 
+        //корабль
         spaceship = game.add.tileSprite(1000, game.world.height - 1000, 1232, 899, 'spaceship');
+
         //дома
         houses = game.add.group();
         houses.enableBody = true;
@@ -406,6 +470,7 @@ var MainGame = {
         //    configureHouse(_house, id);
         //}
 
+        //сломалась карта домов -> импровизация. вжух и много кода!
         small_house = houses.create(4109, game.world.height - 500, 'small_house');
         configureHouse(small_house, 1);
         big_house = houses.create(4316, game.world.height - 625, 'big_house');
@@ -620,44 +685,58 @@ var MainGame = {
         configureHouse(small_house, 1);
         green_house = houses.create(22958, game.world.height - 760, 'house_green');
         configureHouse(green_house, 4); 
-        //debug_home = small_house ; //для отладки
-
 
 
         //настройка игрока
         player = new Player(game, 8000, game.world.height - 850, 'player');
+        player.body.velocity.y = 0;
 
         //player = game.dragonBonesPlugin.getArmature('player');
         //player.position.setTo(8000, game.world.height - 850);
-        
-        //game.world.add(player);
-        //player.animation.play("animtion0", 24);
+
+        //камера
         game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.4, 0.8);
-        player.body.velocity.y = 0;
+        
 
         //наэкранные кнопки (треюуется созданный игрок)
         if (tools.isMobile()) {
-            console.log(1);
 
-            let buttonLeft = game.add.button(config.targetWidth / 22, config.targetHeight - 220, 'UI_left', null, this, 0, 0, 0);
-            buttonLeft.scale.setTo(2, 2);
+            let buttonLeft = game.add.button(70, config.targetHeight - 300, 'UI_left', null, this, 0, 0, 0);
             buttonLeft.fixedToCamera = true;  
             buttonLeft.events.onInputDown.add(() => { player.isLeft = true; });
             buttonLeft.events.onInputUp.add(() => { player.isLeft = false; });
 
-            let buttonRight = game.add.button(config.targetWidth / 22 + 200, config.targetHeight - 220, 'UI_right', null, this, 0, 0, 0);
-            buttonRight.scale.setTo(2, 2);
+            let buttonRight = game.add.button(70 + 250, config.targetHeight - 300, 'UI_right', null, this, 0, 0, 0);
             buttonRight.fixedToCamera = true;
             buttonRight.events.onInputDown.add(() => { player.isRight = true; });
             buttonRight.events.onInputUp.add(() => { player.isRight = false; });
 
-            let buttonA = game.add.button(config.targetWidth - 250, config.targetHeight - 220, 'UI_A', null, this, 0, 0, 0);
-            buttonA.scale.setTo(2, 2);
+            let buttonA = game.add.button(config.targetWidth - 290, config.targetHeight - 300, 'UI_A', null, this, 0, 0, 0);
             buttonA.fixedToCamera = true;
             buttonA.events.onInputDown.add(() => { player.isJump = true; });
             buttonA.events.onInputUp.add(() => { player.isJump = false; });
-        }        
+
+            let buttonX = game.add.button(config.targetWidth - 290 - 260, config.targetHeight - 300, 'UI_X', null, this, 0, 0, 0);
+            buttonX.fixedToCamera = true;
+            buttonX.events.onInputDown.add(() => { player.isFire = true; });
+            buttonX.events.onInputUp.add(() => { player.isFire = false; });
+        }
+
+        //индикаторы
+        let style = { font: "60px Nord", fill: "white", align: "center" };
+        this.patrons_text = game.add.text(config.targetWidth - 200, 100, "2", style);
+        this.health_text = game.add.text(70, 100, "+100", style);
+        this.patrons_text.fixedToCamera = true;
+        this.health_text.fixedToCamera = true;
+
+        //кнопка действия
+        this.actionText = game.add.button(0, 0, 'UI_F', this.doAction, this);
+        this.actionText.scale.setTo(0.5, 0.5);
+        this.actionText.anchor.setTo(0.5, 1);
+        this.actionText.visible = false;
     },
+
+    actionText: null,
 
     update: function () {
         game.physics.arcade.collide(houses, player);
@@ -672,6 +751,22 @@ var MainGame = {
             rocks_foreground[i].position.x = game.camera.position.x / 30 + i * 7337;
         }
 
+        //текст
+        if (player.patrons == 0) this.patrons_text.fill = 'red';
+        this.patrons_text.text = '- ' + player.patrons + ' -';
+        this.health_text.text = '+ ' + player.body.health;
+
+        //кнопка действия
+        if (player.isAction) {
+            this.actionText.position.setTo(player.position.x, player.position.y - 130);
+            this.actionText.visible = true;
+        } 
+        else this.actionText.visible = false;
+
+    },
+
+    doAction() {
+        player.doAction();
     },
 
     render: function () {
@@ -683,15 +778,21 @@ var MainGame = {
     }
 }
 
-var MainMenu = {
+var IntroGame = {
 
     preload: function () {
 
     },
 
     create: function () {
-        game.physics.startSystem(Phaser.Physics.ARCADE);
-        game.world.setBounds(0, 0, 7000, 1500);
+        //let text = " текст\n текст";
+        //let style = { font: "24px Nord", fill: "white", align: "center" };
+        //let text_view = game.add.text(100, 400, text, style);
+        //text_view.fixedToCamera = true;
+        //text_view.wordWrap = true;
+        //text_view.wordWrapWidth = 228; //ширина блока
+
+        game.state.start('MainGame');
     },
 
     update: function () {
@@ -706,8 +807,7 @@ var ConclusionGame = {
     },
 
     create: function () {
-        game.physics.startSystem(Phaser.Physics.ARCADE);
-        game.world.setBounds(0, 0, 7000, 1500);
+        
     },
 
     update: function () {
@@ -718,7 +818,7 @@ var ConclusionGame = {
 
 game.state.add('IntroGame',IntroGame);
 game.state.add('MainGame', MainGame);
-//game.state.add('MainMenu',MainMenu);
-//game.state.add('ConclusionGame',ConclusionGame);  
-game.state.start('IntroGame');
+game.state.add('MainMenu',MainMenu);
+game.state.add('ConclusionGame',ConclusionGame);  
+game.state.start('MainMenu');
 
