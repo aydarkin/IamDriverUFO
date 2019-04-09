@@ -1,5 +1,9 @@
-﻿body {
-    font-family: 'Segoe UI', sans-serif;
+﻿@font-face {
+    font-family: 'Nord';
+    src: url('UI/nord.ttf') format('truetype');
+}
+body {
+    font-family: 'Nord';
     margin: 0px;
     background-color: black;
 }
@@ -13,7 +17,4 @@ canvas {
     margin-right:auto;
 }
 
-@font-face {
-    font-family: 'Nord';
-    src: url('UI/nord.ttf') format('truetype');
-}
+

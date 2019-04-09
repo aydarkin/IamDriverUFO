@@ -230,7 +230,7 @@ var MainMenu = {
         this.soundButton1.setFrames(1, 1, 1);
         this.soundButton2.setFrames(2, 2, 2);
         config.sound = false;
-        this.music_theme.stop()
+        this.music_theme.stop();
     }
 }
  
@@ -815,32 +815,86 @@ var MainGame = {
     }
 }
 
+let spaceshi1p;
+let asteroid;
+let ink = 0;
 var IntroGame = {
-
+    music_theme: null,
+       
     preload: function () {
+        //экран загрузки
+        game.add.sprite(0, 0, 'load');
+        game.load.audio('preface', 'assets/audio/preface.mp3');
         game.load.image('background', 'assets/background1.png');
-        game.load.image('spaceship', 'assets/spaceship.png');
+        game.load.image('spaceship', 'assets/spaceship.png'); 
+        game.load.image('asteroid', 'assets/asteroid.png');
     },
-
+    
     create: function () {
-        //let text = " текст\n текст";
-        //let style = { font: "24px Nord", fill: "white", align: "center" };
-        //let text_view = game.add.text(100, 400, text, style);
-        //text_view.fixedToCamera = true;
-        //text_view.wordWrap = true;
-        //text_view.wordWrapWidth = 228; //ширина блока
+        this.music_theme = game.add.audio('preface', 1, true); //ключ, громкость, зацикленность
+        if (config.sound) this.music_theme.play()
+
         let background = game.add.image(0, 0, 'background');
-        let spaceship = game.add.image(0, 0, 'spaceship');
         background.anchor.setTo(0, 0);
         background.position.setTo(0, 0);
-        game.add.tween(background.scale).to({ x: 1.04, y: 1.04 }, 3500, Phaser.Easing.Sinusoidal.InOut, true, 2000, 20, true).loop(true);
-        //game.state.start('MainGame');
+        game.add.tween(background.position).to({ x: -200, y: -100 }, 5000, Phaser.Easing.Linear.InOut, true, 0, 1, true).loop(true);
+
+        spaceshi1p = game.add.sprite(-1000, 500, 'spaceship');
+        game.physics.enable(spaceshi1p, Phaser.Physics.ARCADE);
+        spaceshi1p.body.velocity.x = +200;
+        spaceshi1p.body.setSize(658, 0, 0, 30);
+
+        asteroid = game.add.sprite(2400, -100, 'asteroid');
+        spaceshi1p.body.setSize(256, 0, 0, -30);
+        game.physics.enable(asteroid, Phaser.Physics.ARCADE);
+        asteroid.body.immovable = true;
+        asteroid.body.velocity.x = -200;
+        asteroid.body.velocity.y = +50;
+        game.add.tween(asteroid).to({ rotation: 0.5 }, 2000, Phaser.Easing.Linear.InOut, true, 0, 1, true).loop(true);
+
+        
+
+        let text = " Ну что ж, нашего маленького инопланетянина зовут Лёня.\n Он дрейфовал на своем летательном корабле по просторам космоса. Лёня очень любит путешествовать, это его хобби";
+        let style = { font: "24px Comic Sans MS", fill: "white", align: "center" };
+        let text_view = game.add.text(100, 100, text, style);
+
+        text_view.fixedToCamera = true;
+        text_view.wordWrap = true;
+        text_view.wordWrapWidth = 1500; //ширина блока
     },
 
     update: function () {
 
+        if (game.physics.arcade.collide(spaceshi1p, asteroid)) this.crash(spaceshi1p, asteroid);
+
     },
+
+    crash: function (spaceshi1p, asteroid) {
+
+        spaceshi1p.body.velocity.x = +500;
+        spaceshi1p.body.velocity.y = +500;
+        if (ink == 0) {
+
+            let text = "Леня так залюбовался космическими красотами,что задумался и не заметил, как врезался в огромный астероид.\n От полученного удара наш путешественник потерял сознание \n ";
+            let style = { font: "24px Comic Sans MS", fill: "white", align: "center" };
+            let text_view = game.add.text(100, 500, text, style);
+            text = "После полученных повреждений судно на автопилоте приземлилось на планету под названием Венец";
+            text_view = game.add.text(100, 800, text, style);
+            ink = 1;
+            
+            let timer = game.time.create(false);
+            timer.loop(10000, () => {
+                this.music_theme.stop();
+                timer.stop();
+                game.state.start('MainGame');
+            }, this);
+            timer.start();
+        }
+    }
 }
+
+
+
 
 var ConclusionGame = {
 
@@ -849,7 +903,7 @@ var ConclusionGame = {
     },
 
     create: function () {
-        
+
     },
 
     update: function () {
