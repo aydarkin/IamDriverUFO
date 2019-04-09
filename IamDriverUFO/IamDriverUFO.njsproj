@@ -46,6 +46,7 @@
     <Content Include="game\assets\audio\%28main_menu%29Kevin MacLeod - Phantom from Space.mp3" />
     <Content Include="game\assets\audio\game.mp3" />
     <Content Include="game\assets\audio\laser1.ogg" />
+    <Content Include="game\assets\audio\preface.mp3" />
     <Content Include="game\assets\background.jpg" />
     <Content Include="game\assets\big_house.png" />
     <Content Include="game\assets\big_house_orange.png" />
