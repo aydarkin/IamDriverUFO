@@ -191,7 +191,7 @@ class NPC extends Phaser.Sprite {
 
         game.physics.arcade.enable(this);
         this.body.health = 100;
-        this.body.gravity.y = 400;
+        this.body.gravity.y = 800;
         this.body.width = 10;
         this.body.offset.setTo(45,0);
         this.body.collideWorldBounds = true;
@@ -226,7 +226,7 @@ class NPC extends Phaser.Sprite {
         if (player.karma < 0) this.animations.play('NPC_bad');
 
         //первая встреча
-        if (((player.position.x > this.position.x + 20 - (Math.random() * 120)) && (player.position.x < this.position.x - 20 + (Math.random() * 120))) && !this.isRunning) {
+        if (((player.position.x > this.position.x - 100 - (Math.random() * 200)) && (player.position.x < this.position.x + 100 + (Math.random() * 200))) && !this.isRunning) {
             this.isLeft = (player.position.x > this.position.x);
             this.isRight = (player.position.x < this.position.x);
             this.isRunning = true;
@@ -236,6 +236,7 @@ class NPC extends Phaser.Sprite {
         if (this.isRunning && ((this.position.x < player.position.x - 1200) || (this.position.x > player.position.x + 1200))) {
             let direction = (player.position.x > this.position.x) ? 1 : -1;
             this.x = player.x + (direction * (2200 + (Math.random() * 1400)));
+            this.y = game.world.height - 300 - (Math.random() * 1300);
             this.isRunning = false;
             this.isLeft = false;
             this.isRight = false;
@@ -819,7 +820,7 @@ var MainGame = {
         new NPC(game, 5700, game.world.height - 850, 2, npc);
         new NPC(game, 6800, game.world.height - 850, 3, npc);
         new NPC(game, 7300, game.world.height - 850, 1, npc);
-        new NPC(game, 8000, game.world.height - 850, 2, npc);
+        new NPC(game, 7880, game.world.height - 850, 2, npc);
         new NPC(game, 8300, game.world.height - 850, 3, npc);
         new NPC(game, 9000, game.world.height - 850, 1, npc);
         new NPC(game, 9500, game.world.height - 850, 2, npc);
@@ -851,7 +852,7 @@ var MainGame = {
         game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.4, 0.8);
         
 
-        //наэкранные кнопки (треюуется созданный игрок)
+        //наэкранные кнопки (требуется созданный игрок)
         if (tools.isMobile()) {
 
             let buttonLeft = game.add.button(70, config.targetHeight - 300, 'UI_left', null, this, 0, 0, 0);
@@ -895,6 +896,7 @@ var MainGame = {
 
     update: function () {
         game.physics.arcade.collide(houses, player);
+        game.physics.arcade.collide(houses, npc);
         game.physics.arcade.collide(parts, player, repair_spaceship, null, this);
         //параллакс
         for (var i in rock_background) {
