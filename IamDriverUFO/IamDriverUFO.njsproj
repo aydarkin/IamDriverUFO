@@ -38,6 +38,8 @@
     <Compile Include="server.js" />
     <Content Include="game\assets\animation\anim1.json" />
     <Content Include="game\assets\animation\anim1.png" />
+    <Content Include="game\assets\animation\anim2.json" />
+    <Content Include="game\assets\animation\anim2.png" />
     <Content Include="game\assets\app.css">
       <Publish>False</Publish>
     </Content>
@@ -68,7 +70,6 @@
     <Content Include="game\assets\player.png" />
     <Content Include="game\assets\purple_big_house_left.png" />
     <Content Include="game\assets\purple_big_house_right.png" />
-    <Content Include="game\assets\sky.jpg" />
     <Content Include="game\assets\small_house.png" />
     <Content Include="game\assets\small_house_mirrored.png" />
     <Content Include="game\assets\small_transparent _house.png" />

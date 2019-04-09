@@ -1,0 +1,732 @@
+{"frames": {
+
+"Armature_NPC1_bad_00.png":
+{
+	"frame": {"x":0,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_01.png":
+{
+	"frame": {"x":112,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_02.png":
+{
+	"frame": {"x":224,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_03.png":
+{
+	"frame": {"x":336,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_04.png":
+{
+	"frame": {"x":448,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_05.png":
+{
+	"frame": {"x":560,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_06.png":
+{
+	"frame": {"x":672,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_07.png":
+{
+	"frame": {"x":784,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_08.png":
+{
+	"frame": {"x":896,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_09.png":
+{
+	"frame": {"x":1008,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_10.png":
+{
+	"frame": {"x":1120,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_11.png":
+{
+	"frame": {"x":1232,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_12.png":
+{
+	"frame": {"x":1344,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_13.png":
+{
+	"frame": {"x":1456,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_14.png":
+{
+	"frame": {"x":1568,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_15.png":
+{
+	"frame": {"x":1680,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_bad_16.png":
+{
+	"frame": {"x":1792,"y":0,"w":112,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":112,"h":188},
+	"sourceSize": {"w":112,"h":188}
+},
+"Armature_NPC1_good_00.png":
+{
+	"frame": {"x":1904,"y":0,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_01.png":
+{
+	"frame": {"x":0,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_02.png":
+{
+	"frame": {"x":110,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_03.png":
+{
+	"frame": {"x":220,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_04.png":
+{
+	"frame": {"x":330,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_05.png":
+{
+	"frame": {"x":440,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_06.png":
+{
+	"frame": {"x":550,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_07.png":
+{
+	"frame": {"x":660,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_08.png":
+{
+	"frame": {"x":770,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_09.png":
+{
+	"frame": {"x":880,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_10.png":
+{
+	"frame": {"x":990,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_11.png":
+{
+	"frame": {"x":1100,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_12.png":
+{
+	"frame": {"x":1210,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_13.png":
+{
+	"frame": {"x":1320,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_14.png":
+{
+	"frame": {"x":1430,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_15.png":
+{
+	"frame": {"x":1540,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC1_good_16.png":
+{
+	"frame": {"x":1650,"y":188,"w":110,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":188},
+	"sourceSize": {"w":110,"h":188}
+},
+"Armature_NPC2_bad_00.png":
+{
+	"frame": {"x":1760,"y":188,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_01.png":
+{
+	"frame": {"x":1879,"y":188,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_02.png":
+{
+	"frame": {"x":0,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_03.png":
+{
+	"frame": {"x":119,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_04.png":
+{
+	"frame": {"x":238,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_05.png":
+{
+	"frame": {"x":357,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_06.png":
+{
+	"frame": {"x":476,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_07.png":
+{
+	"frame": {"x":595,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_08.png":
+{
+	"frame": {"x":714,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_09.png":
+{
+	"frame": {"x":833,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_10.png":
+{
+	"frame": {"x":952,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_11.png":
+{
+	"frame": {"x":1071,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_12.png":
+{
+	"frame": {"x":1190,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_13.png":
+{
+	"frame": {"x":1309,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_bad_14.png":
+{
+	"frame": {"x":1428,"y":376,"w":119,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":181},
+	"sourceSize": {"w":119,"h":181}
+},
+"Armature_NPC2_good_00.png":
+{
+	"frame": {"x":1547,"y":376,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_01.png":
+{
+	"frame": {"x":1652,"y":376,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_02.png":
+{
+	"frame": {"x":1757,"y":376,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_03.png":
+{
+	"frame": {"x":1862,"y":376,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_04.png":
+{
+	"frame": {"x":0,"y":557,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_05.png":
+{
+	"frame": {"x":105,"y":557,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_06.png":
+{
+	"frame": {"x":210,"y":557,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_07.png":
+{
+	"frame": {"x":315,"y":557,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_08.png":
+{
+	"frame": {"x":420,"y":557,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_09.png":
+{
+	"frame": {"x":525,"y":557,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_10.png":
+{
+	"frame": {"x":630,"y":557,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_11.png":
+{
+	"frame": {"x":735,"y":557,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_12.png":
+{
+	"frame": {"x":840,"y":557,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_13.png":
+{
+	"frame": {"x":945,"y":557,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC2_good_14.png":
+{
+	"frame": {"x":1050,"y":557,"w":105,"h":181},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":181},
+	"sourceSize": {"w":105,"h":181}
+},
+"Armature_NPC3_bad_00.png":
+{
+	"frame": {"x":1155,"y":557,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_01.png":
+{
+	"frame": {"x":1263,"y":557,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_02.png":
+{
+	"frame": {"x":1371,"y":557,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_03.png":
+{
+	"frame": {"x":1479,"y":557,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_04.png":
+{
+	"frame": {"x":1587,"y":557,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_05.png":
+{
+	"frame": {"x":1695,"y":557,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_06.png":
+{
+	"frame": {"x":1803,"y":557,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_07.png":
+{
+	"frame": {"x":1911,"y":557,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_08.png":
+{
+	"frame": {"x":0,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_09.png":
+{
+	"frame": {"x":108,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_10.png":
+{
+	"frame": {"x":216,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_11.png":
+{
+	"frame": {"x":324,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_bad_12.png":
+{
+	"frame": {"x":432,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_00.png":
+{
+	"frame": {"x":540,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_01.png":
+{
+	"frame": {"x":648,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_02.png":
+{
+	"frame": {"x":756,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_03.png":
+{
+	"frame": {"x":864,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_04.png":
+{
+	"frame": {"x":972,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_05.png":
+{
+	"frame": {"x":1080,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_06.png":
+{
+	"frame": {"x":1188,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_07.png":
+{
+	"frame": {"x":1296,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_08.png":
+{
+	"frame": {"x":1404,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_09.png":
+{
+	"frame": {"x":1512,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_10.png":
+{
+	"frame": {"x":1620,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_11.png":
+{
+	"frame": {"x":1728,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+},
+"Armature_NPC3_good_12.png":
+{
+	"frame": {"x":1836,"y":747,"w":108,"h":190},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":108,"h":190},
+	"sourceSize": {"w":108,"h":190}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "anim2.png",
+	"format": "RGBA8888",
+	"size": {"w":2019,"h":937},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:3c8772c3f52c5c6f8bd151ee016a1cfd:e53e5164c26ad096956fe68a93a9ca83:367e4d1f3eab680d48bb68b2c8bea757$"
+}
+}

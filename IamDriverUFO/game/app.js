@@ -49,7 +49,13 @@ class Player extends Phaser.Sprite {
         //настройка оружия
         this.weapon.addBulletAnimation('laser_weapon',null, 24, true);
         this.weapon.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
-        this.weapon.bulletSpeed = 1000;
+        this.weapon.bulletCollideWorldBounds = true;
+        //this.weapon.bullets.forEach((bullet) => {
+        //    bullet.body.collideWorldBounds = true;
+        //    bullet.body.bounce.set(1)
+        //});
+
+        this.weapon.bulletSpeed = 1200;
     }
 
     //система кармы
@@ -75,6 +81,10 @@ class Player extends Phaser.Sprite {
 
     update() {
         game.physics.arcade.collide(this, ground);
+        game.physics.arcade.overlap(this.weapon.bullets, npc, function (object1, object2) {
+            object1.kill();
+            object2.kill();
+        });
 
         this.body.velocity.x = 0;
         //cursors = game.input.keyboard.createCursorKeys();
@@ -156,18 +166,62 @@ class Player extends Phaser.Sprite {
 
 //класс неигрового персонажа
 class NPC extends Phaser.Sprite {
-    constructor(game, x, y, texture) {
-        super(game, x, y, texture);
+    constructor(game, x, y, type, group) {
+        super(game, x, y, 'NPC');
+        this.anchor.setTo(0.5, 0.5); //центровка якоря
+
+        switch (type) {
+            case 1:
+                this.animations.add('NPC_good', Phaser.Animation.generateFrameNames('Armature_NPC1_good_', 0, 16, '.png', 2), 24, true);
+                this.animations.add('NPC_bad', Phaser.Animation.generateFrameNames('Armature_NPC1_bad_', 0, 16, '.png', 2), 24, true);
+                break;
+            case 2:
+                this.animations.add('NPC_good', Phaser.Animation.generateFrameNames('Armature_NPC2_good_', 0, 14, '.png', 2), 24, true);
+                this.animations.add('NPC_bad', Phaser.Animation.generateFrameNames('Armature_NPC2_bad_', 0, 14, '.png', 2), 24, true);
+                break;
+            case 3:
+                this.animations.add('NPC_good', Phaser.Animation.generateFrameNames('Armature_NPC3_good_', 0, 12, '.png', 2), 24, true);
+                this.animations.add('NPC_bad', Phaser.Animation.generateFrameNames('Armature_NPC3_bad_', 0, 12, '.png', 2), 24, true);
+                break;
+            default:
+        }
+        this.animations.play('NPC_good');
+
         game.physics.arcade.enable(this);
         this.body.health = 100;
-        this.body.speed = 100;
-        this.body.bounce.y = 0.1;
         this.body.gravity.y = 400;
-        //this.body.setSize(100, 270, 0, 0);
+        this.body.width = 10;
+        this.body.offset.setTo(45,0);
         this.body.collideWorldBounds = true;
         game.physics.arcade.enableBody(this);
         game.add.existing(this); // добавляет в игру
+
+        group.add(this);
     }
+
+    //маркеры состояния
+    isLeft = false;
+    isRight = false;
+
+    update() {
+        game.physics.arcade.collide(this, ground);
+        //if karma
+        this.body.velocity.x = 0;
+        //cursors = game.input.keyboard.createCursorKeys();
+
+        if (this.isLeft) {
+            this.scale.x = -1;
+            this.body.velocity.x = -450;
+        }
+        else
+            if (this.isRight) {
+                this.scale.x = 1;
+                this.body.velocity.x = 450;
+            }
+
+
+    }
+
 }
 
 var MainMenu = {
@@ -238,6 +292,9 @@ let houses; // группа домов
 let ground; // группа поверхностей земля
 let debug_home; //отлаживаемый объект
 let spaceship = [];
+let parts;
+let part = [];
+let npc; //группа нпц
 
 let tools = {
     isMobile: () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) //регулярное выражение
@@ -248,13 +305,17 @@ let sky;
 let rock_background;
 let rocks_middle;
 let rocks_foreground;
-let parts;
-let part = [];
+
+
+
 var MainGame = {
+
+    load_sprite: null,
 
     preload: function () {
         //экран загрузки
-        game.add.sprite(0, 0, 'load');
+        this.load_sprite = game.add.sprite(0, 0, 'load');
+        this.load_sprite.bringToTop();
 
         //уровень
         game.load.image('rock_background', 'assets/rock_background.png');   
@@ -297,11 +358,15 @@ var MainGame = {
         game.load.image('part_3', 'assets/part_3.png');
         game.load.image('part_4', 'assets/part_4.png');
         game.load.image('part_5', 'assets/part_5.png');
+
         //игрок
         game.load.atlasJSONHash('player', 'assets/animation/anim1.png', 'assets/animation/anim1.json');
         game.load.spritesheet('bullet', 'assets/laser_anim.png', 153, 38);
         //game.dragonBonesPlugin = game.plugins.add(Rift.DragonBonesPlugin);  //не работает, не поддерживается движком
         //game.SpinePlugin = game.add.plugin(PhaserSpine.SpinePlugin);  ////не работает, нет поддержки физики объекта
+
+        //NPC
+        game.load.atlasJSONHash('NPC', 'assets/animation/anim2.png', 'assets/animation/anim2.json');
 
         //музыка
         game.load.audio('game_main', 'assets/audio/game.mp3');
@@ -723,10 +788,37 @@ var MainGame = {
         part[3].visible = false;
         part[4].visible = false;
 
+        //настройка нпц
+        npc = game.add.group(); 
+        new NPC(game, 5100, game.world.height - 850, 1, npc); 
+        new NPC(game, 5700, game.world.height - 850, 2, npc);
+        new NPC(game, 6800, game.world.height - 850, 3, npc);
+        new NPC(game, 7300, game.world.height - 850, 1, npc);
+        new NPC(game, 8000, game.world.height - 850, 2, npc);
+        new NPC(game, 8300, game.world.height - 850, 3, npc);
+        new NPC(game, 9000, game.world.height - 850, 1, npc);
+        new NPC(game, 9500, game.world.height - 850, 2, npc);
+        new NPC(game, 10000, game.world.height - 850, 3, npc);
+        new NPC(game, 10600, game.world.height - 850, 1, npc);
+        new NPC(game, 11200, game.world.height - 850, 2, npc);
+        new NPC(game, 11800, game.world.height - 850, 3, npc);
+        new NPC(game, 12100, game.world.height - 850, 1, npc);
+        new NPC(game, 13000, game.world.height - 850, 2, npc);
+        new NPC(game, 13500, game.world.height - 850, 3, npc);
+        new NPC(game, 13900, game.world.height - 850, 1, npc);
+        new NPC(game, 14400, game.world.height - 850, 2, npc);
+        new NPC(game, 15000, game.world.height - 850, 3, npc);
+        new NPC(game, 15200, game.world.height - 850, 1, npc);
+        new NPC(game, 15900, game.world.height - 850, 2, npc);
+        new NPC(game, 16000, game.world.height - 850, 3, npc);
+        new NPC(game, 16600, game.world.height - 850, 1, npc);
+        new NPC(game, 17000, game.world.height - 850, 2, npc);
+        new NPC(game, 17200, game.world.height - 850, 3, npc);
+
+
         //настройка игрока
         player = new Player(game, 1500, game.world.height - 850, 'player');
         player.body.velocity.y = 0;
-
         //player = game.dragonBonesPlugin.getArmature('player');
         //player.position.setTo(8000, game.world.height - 850);
 
@@ -770,6 +862,8 @@ var MainGame = {
         this.actionText.scale.setTo(0.5, 0.5);
         this.actionText.anchor.setTo(0.5, 1);
         this.actionText.visible = false;
+
+        this.load_sprite.destroy();
     },
 
     actionText: null,
@@ -808,7 +902,7 @@ var MainGame = {
 
     render: function () {
         //game.debug.body(debug_home); //посмотреть другие 
-        //game.debug.body(player);
+        //game.debug.body(npc.children[0]);
         //game.debug.spriteInfo(player, 600, 32);
         //game.debug.spriteInfo(ground, 32, 32);
         //game.debug.spriteBounds(player);
@@ -834,7 +928,7 @@ var IntroGame = {
         background.anchor.setTo(0, 0);
         background.position.setTo(0, 0);
         game.add.tween(background.scale).to({ x: 1.04, y: 1.04 }, 3500, Phaser.Easing.Sinusoidal.InOut, true, 2000, 20, true).loop(true);
-        //game.state.start('MainGame');
+        game.state.start('MainGame');
     },
 
     update: function () {
