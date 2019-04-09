@@ -237,7 +237,7 @@ var MainMenu = {
 let houses; // группа домов
 let ground; // группа поверхностей земля
 let debug_home; //отлаживаемый объект
-let spaceship;
+let spaceship = [];
 
 let tools = {
     isMobile: () => /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) //регулярное выражение
@@ -248,8 +248,8 @@ let sky;
 let rock_background;
 let rocks_middle;
 let rocks_foreground;
-
-
+let parts;
+let part = [];
 var MainGame = {
 
     preload: function () {
@@ -283,9 +283,20 @@ var MainGame = {
         game.load.image('house_orange3', 'assets/house_orange3.png'); 
         game.load.image('house_orange', 'assets/house_orange.png');
         game.load.image('big_house_orange', 'assets/big_house_orange.png');
-        game.load.image('spaceship', 'assets/spaceship.png');
         game.load.image('flash', 'assets/flash.png');
 
+        //корабль
+        game.load.image('destroyed_spaceship', 'assets/destroyed_spaceship.png');
+        game.load.image('destroyed_spaceship_1', 'assets/destroyed_spaceship_1.png');
+        game.load.image('destroyed_spaceship_2', 'assets/destroyed_spaceship_2.png');
+        game.load.image('destroyed_spaceship_3', 'assets/destroyed_spaceship_3.png');
+        game.load.image('destroyed_spaceship_4', 'assets/destroyed_spaceship_4.png');
+        game.load.image('destroyed_spaceship_5', 'assets/destroyed_spaceship_5.png');
+        game.load.image('part_1', 'assets/part_1.png');
+        game.load.image('part_2', 'assets/part_2.png');
+        game.load.image('part_3', 'assets/part_3.png');
+        game.load.image('part_4', 'assets/part_4.png');
+        game.load.image('part_5', 'assets/part_5.png');
         //игрок
         game.load.atlasJSONHash('player', 'assets/animation/anim1.png', 'assets/animation/anim1.json');
         game.load.spritesheet('bullet', 'assets/laser_anim.png', 153, 38);
@@ -345,7 +356,7 @@ var MainGame = {
         ground.body.immovable = true;
 
         //горы
-        let rocks = game.add.group(); 
+        let rocks = game.add.group();
 
         rock_background = [];
         rock_background.push(rocks.create(0, game.world.height - 742, 'rock_background'));
@@ -366,9 +377,6 @@ var MainGame = {
         rocks_foreground.push(rocks.create(14673, game.world.height - 657, 'rocks_foreground'));
         rocks_foreground.push(rocks.create(22010, game.world.height - 657, 'rocks_foreground'));
 
-        //корабль
-        spaceship = game.add.tileSprite(1000, game.world.height - 1000, 1232, 899, 'spaceship');
-
         //дома
         houses = game.add.group();
         houses.enableBody = true;
@@ -384,22 +392,22 @@ var MainGame = {
             switch (type) {
                 case 1:
                     house.body.setSize(195, 0, 10, 3);
-                break;
+                    break;
 
                 case 2:
                     house.body.setSize(210, 0, 23, 2);
-                break;
+                    break;
 
                 case 3:
                     house.body.setSize(295, 0, 0, 2);
-                break;
+                    break;
 
                 case 4:
                     house.body.setSize(240, 0, 2, 2);
-                break;
+                    break;
 
                 default:
-                break;
+                    break;
             }
 
             house.body.checkCollision.down = false;
@@ -407,9 +415,6 @@ var MainGame = {
             house.body.checkCollision.right = false;
             house.body.collideWorldBounds = true;
             house.body.immovable = true;
-        }
-        function home_add() {
-
         }
         //TODO потом оптимизировать
         //for (let building in buildings) {
@@ -444,26 +449,26 @@ var MainGame = {
         //        type = 'house_green';
         //        id = 4;
         //    }
-            //if (height > 500 && height > 505) {
-            //    type = 'house_orange';
-            //    id = 4;
-            //}
-            //if (height > 500 && height > 505) {
-            //    type = 'house_orange1';
-            //    id = 4;
-            //}
-            //if (height > 500 && height > 505) {
-            //    type = 'house_orange2';
-            //    id = 4;
-            //}
-            //if (height > 500 && height > 505) {
-            //    type = 'house_orange3';
-            //    id = 4;
-            //}
-            //if (height > 500 && height > 505) {
-            //    type = 'big_house_orange';
-            //    id = 4;
-            //}
+        //if (height > 500 && height > 505) {
+        //    type = 'house_orange';
+        //    id = 4;
+        //}
+        //if (height > 500 && height > 505) {
+        //    type = 'house_orange1';
+        //    id = 4;
+        //}
+        //if (height > 500 && height > 505) {
+        //    type = 'house_orange2';
+        //    id = 4;
+        //}
+        //if (height > 500 && height > 505) {
+        //    type = 'house_orange3';
+        //    id = 4;
+        //}
+        //if (height > 500 && height > 505) {
+        //    type = 'big_house_orange';
+        //    id = 4;
+        //}
 
 
         //    let _house = houses.create(x, y + 99, type);
@@ -476,13 +481,13 @@ var MainGame = {
         big_house = houses.create(4316, game.world.height - 625, 'big_house');
         configureHouse(big_house, 2);
         green_house = houses.create(4723, game.world.height - 760, 'house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         red_house = houses.create(4954, game.world.height - 468, 'house_red');
         configureHouse(red_house, 3);
         big_house = houses.create(5254, game.world.height - 625, 'big_house');
         configureHouse(big_house, 2);
         green_house = houses.create(5641, game.world.height - 760, 'house_orange1');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         green_house = houses.create(5830, game.world.height - 760, 'house_orange2');
         configureHouse(green_house, 4);
         green_house = houses.create(6039, game.world.height - 760, 'house_orange3');
@@ -498,7 +503,7 @@ var MainGame = {
         red_house = houses.create(6421, game.world.height - 833, 'house_red');
         configureHouse(red_house, 3);
         green_house = houses.create(7530, game.world.height - 800, 'transparent_house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         big_house = houses.create(7791, game.world.height - 667, 'transparent_big_house');
         configureHouse(big_house, 2);
         small_house = houses.create(7811, game.world.height - 910, 'small_transparent _house');
@@ -510,7 +515,7 @@ var MainGame = {
         red_house = houses.create(8518, game.world.height - 468, 'house_red');
         configureHouse(red_house, 3);
         green_house = houses.create(8580, game.world.height - 970, 'transparent_house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         big_house = houses.create(8569, game.world.height - 1340, 'transparent_big_house');
         configureHouse(big_house, 2);
         small_house = houses.create(8855, game.world.height - 500, 'small_house');
@@ -518,7 +523,7 @@ var MainGame = {
         small_house = houses.create(8933, game.world.height - 740, 'small_house_mirrored');
         configureHouse(small_house, 1);
         small_house = houses.create(8855, game.world.height - 982, 'small_house');
-        configureHouse(small_house, 1); 
+        configureHouse(small_house, 1);
         big_house = houses.create(9164, game.world.height - 625, 'purple_big_house_right');
         configureHouse(big_house, 2);
         big_house = houses.create(9401, game.world.height - 625, 'purple_big_house_left');
@@ -526,9 +531,9 @@ var MainGame = {
         red_house = houses.create(9254, game.world.height - 825, 'house_red');
         configureHouse(red_house, 3);
         green_house = houses.create(9848, game.world.height - 760, 'transparent_house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         green_house = houses.create(9848, game.world.height - 1263, 'house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         big_house = houses.create(10119, game.world.height - 625, 'big_house');
         configureHouse(big_house, 2);
         small_house = houses.create(10130, game.world.height - 868, 'small_house');
@@ -556,13 +561,13 @@ var MainGame = {
         red_house = houses.create(12355, game.world.height - 877, 'house_red');
         configureHouse(red_house, 3);
         green_house = houses.create(12380, game.world.height - 1380, 'house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         green_house = houses.create(12669, game.world.height - 760, 'transparent_house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         small_house = houses.create(12670, game.world.height - 1003, 'small_transparent _house');
         configureHouse(small_house, 1);
         green_house = houses.create(12670, game.world.height - 1505, 'house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         big_house = houses.create(12921, game.world.height - 625, 'big_house');
         configureHouse(big_house, 2);
         big_house = houses.create(13351, game.world.height - 625, 'big_house');
@@ -572,11 +577,11 @@ var MainGame = {
         red_house = houses.create(14448, game.world.height - 468, 'house_red_right');
         configureHouse(red_house, 3);
         green_house = houses.create(14242, game.world.height - 970, 'transparent_house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         big_house = houses.create(14730, game.world.height - 625, 'big_house');
         configureHouse(big_house, 2);
         green_house = houses.create(14730, game.world.height - 1130, 'transparent_house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         small_house = houses.create(15029, game.world.height - 500, 'small_house');
         configureHouse(small_house, 1);
         red_house = houses.create(15029, game.world.height - 704, 'house_red');
@@ -586,7 +591,7 @@ var MainGame = {
         red_house = houses.create(15029, game.world.height - 1152, 'house_red');
         configureHouse(red_house, 3);
         green_house = houses.create(15350, game.world.height - 760, 'transparent_house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         green_house = houses.create(15350, game.world.height - 1265, 'transparent_house_green');
         configureHouse(green_house, 4);
         green_house = houses.create(15350, game.world.height - 1763, 'transparent_house_green');
@@ -628,7 +633,7 @@ var MainGame = {
         small_house = houses.create(17727, game.world.height - 918, 'small_transparent _house');
         configureHouse(small_house, 1);
         green_house = houses.create(18307, game.world.height - 760, 'transparent_house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         red_house = houses.create(18591, game.world.height - 676, 'house_orange');
         configureHouse(red_house, 3);
         red_house = houses.create(18591, game.world.height - 468, 'house_red');
@@ -644,7 +649,7 @@ var MainGame = {
         red_house = houses.create(19556, game.world.height - 468, 'transparent_house_red');
         configureHouse(red_house, 3);
         green_house = houses.create(19850, game.world.height - 760, 'house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
         big_house = houses.create(20100, game.world.height - 625, 'transparent_big_house');
         configureHouse(big_house, 2);
         big_house = houses.create(20408, game.world.height - 625, 'big_house_orange');
@@ -684,11 +689,42 @@ var MainGame = {
         small_house = houses.create(22700, game.world.height - 500, 'small_house');
         configureHouse(small_house, 1);
         green_house = houses.create(22958, game.world.height - 760, 'house_green');
-        configureHouse(green_house, 4); 
+        configureHouse(green_house, 4);
 
+        //корабль
+        let spaceships = game.add.group();
+
+        spaceship.push(spaceships.create(1000, game.world.height - 890, 'destroyed_spaceship'));
+        spaceship.push(spaceships.create(903, game.world.height - 890, 'destroyed_spaceship_1'));
+        spaceship.push(spaceships.create(903, game.world.height - 890, 'destroyed_spaceship_2'));
+        spaceship.push(spaceships.create(903, game.world.height - 890, 'destroyed_spaceship_3'));
+        spaceship.push(spaceships.create(903, game.world.height - 890, 'destroyed_spaceship_4'));
+        spaceship.push(spaceships.create(903, game.world.height - 890, 'destroyed_spaceship_5'));
+
+        spaceship[1].visible = false
+        spaceship[2].visible = false
+        spaceship[3].visible = false
+        spaceship[4].visible = false
+        spaceship[5].visible = false
+
+        //обломки корабля
+        parts = game.add.group();
+        parts.enableBody = true;
+        parts.physicsBodyType = Phaser.Physics.ARCADE;
+        part.push(parts.create(9883, game.world.height - 1365, 'part_1'));
+        part.push(parts.create(12355, game.world.height - 880, 'part_2'));
+        part.push(parts.create(17084, game.world.height - 470, 'part_3'));
+        part.push(parts.create(19850, game.world.height - 760, 'part_4'));
+        part.push(parts.create(22412, game.world.height - 625, 'part_5'));
+
+        part[0].visible = true;
+        part[1].visible = false;
+        part[2].visible = false;
+        part[3].visible = false;
+        part[4].visible = false;
 
         //настройка игрока
-        player = new Player(game, 8000, game.world.height - 850, 'player');
+        player = new Player(game, 1500, game.world.height - 850, 'player');
         player.body.velocity.y = 0;
 
         //player = game.dragonBonesPlugin.getArmature('player');
@@ -740,6 +776,7 @@ var MainGame = {
 
     update: function () {
         game.physics.arcade.collide(houses, player);
+        game.physics.arcade.collide(parts, player, repair_spaceship, null, this);
         //параллакс
         for (var i in rock_background) {
             rock_background[i].position.x = game.camera.position.x / 5 + i * 7337;
@@ -781,7 +818,8 @@ var MainGame = {
 var IntroGame = {
 
     preload: function () {
-
+        game.load.image('background', 'assets/background1.png');
+        game.load.image('spaceship', 'assets/spaceship.png');
     },
 
     create: function () {
@@ -791,8 +829,12 @@ var IntroGame = {
         //text_view.fixedToCamera = true;
         //text_view.wordWrap = true;
         //text_view.wordWrapWidth = 228; //ширина блока
-
-        game.state.start('MainGame');
+        let background = game.add.image(0, 0, 'background');
+        let spaceship = game.add.image(0, 0, 'spaceship');
+        background.anchor.setTo(0, 0);
+        background.position.setTo(0, 0);
+        game.add.tween(background.scale).to({ x: 1.04, y: 1.04 }, 3500, Phaser.Easing.Sinusoidal.InOut, true, 2000, 20, true).loop(true);
+        //game.state.start('MainGame');
     },
 
     update: function () {
@@ -815,6 +857,54 @@ var ConclusionGame = {
     },
 }
 
+function repair_spaceship(player, ship) {
+
+    if (ship.visible != false)
+        ship.kill();
+    let type = ship.key;
+    switch (type) {
+        case 'part_1':
+            spaceship[0].visible = false;
+            spaceship[1].visible = true;
+
+            part[1].visible = true;
+            break;
+
+        case 'part_2':
+            spaceship[1].visible = false;
+            spaceship[2].visible = true;
+
+            part[2].visible = true;
+            break;
+
+        case 'part_3':
+            spaceship[1].visible = false;
+            spaceship[2].visible = false;
+            spaceship[3].visible = true;
+
+            part[3].visible = true;
+            break;
+
+        case 'part_4':
+            spaceship[1].visible = false;
+            spaceship[2].visible = false;
+            spaceship[3].visible = false;
+            spaceship[4].visible = true;
+
+            part[4].visible = true;
+            break;
+        case 'part_5':
+            spaceship[1].visible = false;
+            spaceship[2].visible = false;
+            spaceship[3].visible = false;
+            spaceship[4].visible = false;
+            spaceship[5].visible = true;
+            break;
+
+        default:
+            break;
+    }
+}
 
 game.state.add('IntroGame',IntroGame);
 game.state.add('MainGame', MainGame);
