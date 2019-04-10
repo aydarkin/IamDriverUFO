@@ -71,6 +71,7 @@ class Player extends Phaser.Sprite {
     isShooting = false;
     isFired = true;
     isAction = false;
+    isQuest = false;
 
     //таймеры
     timer = game.time.create(false);
@@ -159,10 +160,15 @@ class Player extends Phaser.Sprite {
         }
         if (this.body.velocity.x == 0 && !this.isJumping && !this.isShooting && this.isFired)
             this.animations.play('player_stay');
+
+        //TODO реализовать логику концовок
+        if (spaceship[5].visible && (this.x < 2050))
+            this.isAction = true;
     }
 
     doAction() {
-
+        game.state.start('ConclusionGame');
+        if (config.sound) MainGame.music_theme.stop();
     }
 }
 
@@ -223,7 +229,10 @@ class NPC extends Phaser.Sprite {
             }
 
         //поведение нпц
-        if (player.karma < 0) this.animations.play('NPC_bad');
+        if (player.karma < 0)
+            this.animations.play('NPC_bad');
+        else 
+            this.animations.play('NPC_good');
 
         //первая встреча
         if (((player.position.x > this.position.x - 100 - (Math.random() * 200)) && (player.position.x < this.position.x + 100 + (Math.random() * 200))) && !this.isRunning) {
@@ -236,14 +245,13 @@ class NPC extends Phaser.Sprite {
         if (this.isRunning && ((this.position.x < player.position.x - 1200) || (this.position.x > player.position.x + 1200))) {
             let direction = (player.position.x > this.position.x) ? 1 : -1;
             this.x = player.x + (direction * (2200 + (Math.random() * 1400)));
-            this.y = game.world.height - 300 - (Math.random() * 1300);
+            this.y = game.world.height - 310 - (Math.random() * 1300);
             this.isRunning = false;
             this.isLeft = false;
             this.isRight = false;
             console.log(this.x);
             if (this.position.x <= 0) this.position.x = 50;
             if (this.position.x >= game.world.width) this.position.x = game.world.width - 50;
-
         }
 
     }
@@ -422,6 +430,7 @@ var MainGame = {
     //текстовые блоки
     patrons_text: null,
     health_text: null,
+    quest_text: null,
 
     create: function () {
         //музыка
@@ -936,8 +945,13 @@ var MainGame = {
         let style = { font: "60px Comic Sans MS", fill: "white", align: "center" };
         this.patrons_text = game.add.text(config.targetWidth - 200, 100, "2", style);
         this.health_text = game.add.text(70, 100, "+100", style);
+
+        style = { font: "48px Comic Sans MS", fill: "white", align: "center" };
+        this.quest_text = game.add.text(config.targetWidth / 2 - 300, 70, "", style);
+
         this.patrons_text.fixedToCamera = true;
         this.health_text.fixedToCamera = true;
+        this.quest_text.fixedToCamera = true;
 
         //кнопка действия
         this.actionText = game.add.button(0, 0, 'UI_F', this.doAction, this);
@@ -956,6 +970,7 @@ var MainGame = {
         text_view.wordWrapWidth = 1000; //ширина блока
     },
 
+    parts_ship: 0,
     actionText: null,
     
 
@@ -983,20 +998,30 @@ var MainGame = {
             this.patrons_text.fill = 'red';
         else 
             this.patrons_text.fill = 'white';
-        this.patrons_text.text = '- ' + player.patrons + ' -';
-        this.health_text.text = '+ ' + player.body.health;
+        this.patrons_text.text = `- ${player.patrons} -`;
+        this.health_text.text = `+ ${player.body.health}`;
+        if (player.isQuest)
+            this.quest_text.text = `Собрано частей корабля ${this.parts_ship}/5`;
+        
+
 
         //кнопка действия
         if (player.isAction) {
             this.actionText.position.setTo(player.position.x, player.position.y - 130);
             this.actionText.visible = true;
+            actionButton = game.input.keyboard.addKey(Phaser.KeyCode.F);
+            if (actionButton.isDown)
+                this.doAction();
         } 
         else this.actionText.visible = false;
+
+        
 
     },
 
     doAction() {
-        player.doAction();
+        if (actionButton.isDown)
+            player.doAction();
     },
 
     render: function () {
@@ -1010,15 +1035,18 @@ var MainGame = {
 let ink_story = 0;
 function story(x) {
     if ((x >= 2000) & (ink_story==0)) {
-        text_view.text = "У Лени очень сильно болела голова. \n Не удивительно, если смотреть что ему пришлось перенести.\n Выйдя из корабля Лёня ничего не увидел. Абсолютно.";
+        text_view.text = "У Лени очень сильно болела голова. \n Не удивительно, если смотреть что ему пришлось перенести.\n Выйдя из корабля Лёня ничего не увидел. Абсолютно";
         ink_story = 1;
     }
     if ((x >= 3000) & (ink_story == 1)) {
         text_view.text = "Он долго-долго моргал и в его глазах начали проявляться очертания планетного ландшафта.\n После он увидел вокруг себя невиданные архитектурные сооружения. И любовался ими некоторое время";
         ink_story = 2;
     }
-        
+    if ((x >= 4300) & (ink_story == 2)) {
+        text_view.text = '';
+        player.isQuest = true;
     }
+}
 let spaceshi1p;
 let asteroid;
 let ink = 0;
@@ -1105,11 +1133,45 @@ var IntroGame = {
 var ConclusionGame = {
 
     preload: function () {
-
+        game.load.image('end_3', 'assets/end_3.png');
+        game.load.image('end_4', 'assets/end_4.png');
+        game.load.audio('end_3_music', 'assets/audio/end_3.mp3');
+        game.load.audio('end_4_music', 'assets/audio/end_4.mp3');
     },
 
     create: function () {
+        let end, text, audio;
+        if (player.karma >= 0) {
+            end = 'end_3';
+            text = 'Лёня собрал корабль, но на этом его путешествие не закончилось. Он стал помогать местным жителям в развитии науки и технологий. Со временем достижения достигли таких высот, что планета уже не могла состязаться в развитии ни с одно планетой в их системе.\nЛёня нашел себе верных друзей в лице тех, кому он помогал в ходе сборки корабля.А его корабль стал главной достопримечательностью планеты';
+            audio = game.add.audio('end_3_music', 1, true); //ключ, громкость, зацикленность  
+        }   
+        else {
+            end = 'end_4';
+            text = 'Лёня убил всех местных жителей, собрал корабль и улетел. Так как все погибли, Венец опустел, на нем стали расти неведомые природе растения. Со временем они так разрослись, что поглотили всю планету и от нее не осталось и следа';
+            audio = game.add.audio('end_4_music', 1, true); 
+        }
+        if (config.sound) audio.play(); 
+        
+        let background = game.add.image(0, 0, end);
+        background.anchor.setTo(0.5, 0.5);
+        background.position.setTo(config.targetWidth / 2, config.targetHeight / 2);
+        game.add.tween(background.scale).to({ x: 1.6, y: 1.6 }, 22000, Phaser.Easing.Sinusoidal.InOut, true, 500, 20, true).loop(true);
 
+        let style = { font: "36px Comic Sans MS", fill: "white", align: "center" };
+        let text_view = game.add.text(150, 100, text, style);
+
+        text_view.fixedToCamera = true;
+        text_view.wordWrap = true;
+        text_view.wordWrapWidth = 1500; //ширина блока
+
+        let timer = game.time.create(false);
+        timer.loop(32000, () => {
+            audio.stop();
+            timer.stop();
+            game.state.start('MainMenu');
+        }, this);
+        timer.start();
     },
 
     update: function () {
@@ -1117,8 +1179,10 @@ var ConclusionGame = {
     },
 }
 
-function repair_spaceship(player, ship) {
 
+
+function repair_spaceship(player, ship) {
+    MainGame.parts_ship++;
     if (ship.visible != false)
         ship.kill();
     let type = ship.key;
