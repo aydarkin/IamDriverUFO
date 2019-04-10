@@ -334,7 +334,8 @@ let rocks_foreground;
 let text ;
 let style;
 let text_view;
-
+let boxes;
+let food;
 var MainGame = {
 
     load_sprite: null,
@@ -371,7 +372,7 @@ var MainGame = {
         game.load.image('house_orange', 'assets/house_orange.png');
         game.load.image('big_house_orange', 'assets/big_house_orange.png');
         game.load.image('flash', 'assets/flash.png');
-
+        game.load.image('box', 'assets/box.png');
         //корабль
         game.load.image('destroyed_spaceship', 'assets/destroyed_spaceship.png');
         game.load.image('destroyed_spaceship_1', 'assets/destroyed_spaceship_1.png');
@@ -384,7 +385,9 @@ var MainGame = {
         game.load.image('part_3', 'assets/part_3.png');
         game.load.image('part_4', 'assets/part_4.png');
         game.load.image('part_5', 'assets/part_5.png');
-
+        game.load.image('cow', 'assets/cow.png');
+        game.load.image('meat', 'assets/meat.png');
+        game.load.image('milk', 'assets/milk.png');
         //игрок
         game.load.atlasJSONHash('player', 'assets/animation/anim1.png', 'assets/animation/anim1.json');
         game.load.spritesheet('bullet', 'assets/laser_anim.png', 153, 38);
@@ -782,6 +785,59 @@ var MainGame = {
         green_house = houses.create(22958, game.world.height - 760, 'house_green');
         configureHouse(green_house, 4);
 
+        //еда
+        food = game.add.group();
+        food.enableBody = true;
+        food.physicsBodyType = Phaser.Physics.ARCADE;
+        function configurefood(product) {
+            product.body.setSize(70, 0, 2, 2);
+            product.body.checkCollision.down = false;
+            product.body.checkCollision.left = false;
+            product.body.checkCollision.right = false;
+            product.body.collideWorldBounds = true;
+            product.body.immovable = true;
+        }
+        let meat = food.create(4590, game.world.height - 330, 'meat');
+        configurefood(meat);
+        meat = food.create(8110, game.world.height - 330, 'meat');
+        configurefood(meat);
+        meat = food.create(9630, game.world.height - 330, 'meat');
+        configurefood(meat);
+
+        let cow = game.add.image(13695, 1740, 'cow');
+
+        let milk = food.create(13200, game.world.height - 400, 'milk');
+        configurefood(milk);
+        milk = food.create(15255, game.world.height - 400, 'milk');
+        configurefood(milk);
+
+        //ящики
+        boxes = game.add.group();
+        boxes.enableBody = true;
+        boxes.physicsBodyType = Phaser.Physics.ARCADE;
+        function configurebox(box) {
+            box.body.setSize(70, 0, 2, 2);
+            box.body.checkCollision.down = false;
+            box.body.checkCollision.left = false;
+            box.body.checkCollision.right = false;
+            box.body.collideWorldBounds = true;
+            box.body.immovable = true;
+        }
+        let box = boxes.create(4580, game.world.height - 400, 'box');
+        configurebox(box);
+        box = boxes.create(5490, game.world.height - 400, 'box');
+        configurebox(box);
+        box = boxes.create(8100, game.world.height - 400, 'box');
+        configurebox(box);
+        box = boxes.create(9620, game.world.height - 400, 'box');
+        configurebox(box);
+        
+      
+
+
+         
+        
+
         //корабль
         let spaceships = game.add.group();
 
@@ -901,14 +957,16 @@ var MainGame = {
     },
 
     actionText: null,
-
+    
 
     update: function () {
         story(player.x);
-        game.physics.arcade.collide(houses, player);
+        game.physics.arcade.collide(houses, player); 
+        game.physics.arcade.collide(boxes, npc); 
         game.physics.arcade.collide(houses, npc);
         game.physics.arcade.collide(parts, player, repair_spaceship, null, this);
-        
+        game.physics.arcade.collide(boxes, player, destroy_boxes, null, this);
+        game.physics.arcade.collide(food, player, health_food, null, this);
         //параллакс
         for (var i in rock_background) {
             rock_background[i].position.x = game.camera.position.x / 5 + i * 7337;
@@ -959,7 +1017,7 @@ function story(x) {
         text_view.text = "Он долго-долго моргал и в его глазах начали проявляться очертания планетного ландшафта.\n После он увидел вокруг себя невиданные архитектурные сооружения. И любовался ими некоторое время";
         ink_story = 2;
     }
-    if ((x >= 4000)&(ink_story == 2)) text_view.text = '';
+        
     }
 let spaceshi1p;
 let asteroid;
@@ -1107,6 +1165,17 @@ function repair_spaceship(player, ship) {
             break;
     }
 }
+function destroy_boxes(player,box) {
+    box.kill();
+} 
+function health_food(player, food) {
+    food.kill();
+    let product = food.key;
+    if (product == 'meat') {
+        player.body.health += 10;
+    }
+    else player.body.health -= 30;
+} 
 
 game.state.add('IntroGame',IntroGame);
 game.state.add('MainGame', MainGame);
