@@ -55,11 +55,11 @@ class Player extends Phaser.Sprite {
         //    bullet.body.bounce.set(1)
         //});
 
+        this.karma = 0;
         this.weapon.bulletSpeed = 1200;
     }
 
     //система кармы
-    //TODO синхронизировать логику с сюжетом
     karma = 0;
     
     //маркеры состояния (особенность движка)
@@ -82,6 +82,8 @@ class Player extends Phaser.Sprite {
     update() {
         game.physics.arcade.collide(this, ground);
         game.physics.arcade.overlap(this.weapon.bullets, npc, function (object1, object2) {
+            //функция вызывается вне объекта, this не работает 
+            player.karma--;
             object1.kill();
             object2.kill();
         });
@@ -202,6 +204,7 @@ class NPC extends Phaser.Sprite {
     //маркеры состояния
     isLeft = false;
     isRight = false;
+    isRunning = false;
 
     update() {
         game.physics.arcade.collide(this, ground);
@@ -210,15 +213,37 @@ class NPC extends Phaser.Sprite {
         //cursors = game.input.keyboard.createCursorKeys();
 
         if (this.isLeft) {
-            this.scale.x = -1;
+            this.scale.x = 1;
             this.body.velocity.x = -450;
         }
         else
             if (this.isRight) {
-                this.scale.x = 1;
+                this.scale.x = -1;
                 this.body.velocity.x = 450;
             }
 
+        //поведение нпц
+        if (player.karma < 0) this.animations.play('NPC_bad');
+
+        //первая встреча
+        if (((player.position.x > this.position.x + 20 - (Math.random() * 120)) && (player.position.x < this.position.x - 20 + (Math.random() * 120))) && !this.isRunning) {
+            this.isLeft = (player.position.x > this.position.x);
+            this.isRight = (player.position.x < this.position.x);
+            this.isRunning = true;
+        }
+
+        //спрятаться (телепортирование:)
+        if (this.isRunning && ((this.position.x < player.position.x - 1200) || (this.position.x > player.position.x + 1200))) {
+            let direction = (player.position.x > this.position.x) ? 1 : -1;
+            this.x = player.x + (direction * (2200 + (Math.random() * 1400)));
+            this.isRunning = false;
+            this.isLeft = false;
+            this.isRight = false;
+            console.log(this.x);
+            if (this.position.x <= 0) this.position.x = 50;
+            if (this.position.x >= game.world.width) this.position.x = game.world.width - 50;
+
+        }
 
     }
 
@@ -851,7 +876,7 @@ var MainGame = {
         }
 
         //индикаторы
-        style = { font: "60px Nord", fill: "white", align: "center" };
+        let style = { font: "60px Comic Sans MS", fill: "white", align: "center" };
         this.patrons_text = game.add.text(config.targetWidth - 200, 100, "2", style);
         this.health_text = game.add.text(70, 100, "+100", style);
         this.patrons_text.fixedToCamera = true;
@@ -894,7 +919,10 @@ var MainGame = {
         }
 
         //текст
-        if (player.patrons == 0) this.patrons_text.fill = 'red';
+        if (player.patrons == 0)
+            this.patrons_text.fill = 'red';
+        else 
+            this.patrons_text.fill = 'white';
         this.patrons_text.text = '- ' + player.patrons + ' -';
         this.health_text.text = '+ ' + player.body.health;
 
