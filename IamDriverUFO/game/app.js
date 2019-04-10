@@ -40,7 +40,7 @@ class Player extends Phaser.Sprite {
         game.physics.arcade.enableBody(this);
         this.body.setSize(150, 402, 50, 0);
         this.body.collideWorldBounds = true;
-        this.body.health = 100;
+        this.body.health = 50;
         this.body.speed = 100;
         this.body.bounce.y = 0.1;
         this.body.gravity.y = 800;
@@ -305,43 +305,43 @@ let sky;
 let rock_background;
 let rocks_middle;
 let rocks_foreground;
-
-
+let text ;
+let style;
+let text_view;
 
 var MainGame = {
 
     load_sprite: null,
-
     preload: function () {
         //экран загрузки
         this.load_sprite = game.add.sprite(0, 0, 'load');
         this.load_sprite.bringToTop();
 
         //уровень
-        game.load.image('rock_background', 'assets/rock_background.png');   
-        game.load.image('rocks_middle', 'assets/rocks_middle.png');  
-        game.load.image('rocks_foreground', 'assets/rocks_foreground.png');        
+        game.load.image('rock_background', 'assets/rock_background.png');
+        game.load.image('rocks_middle', 'assets/rocks_middle.png');
+        game.load.image('rocks_foreground', 'assets/rocks_foreground.png');
         game.load.image('ground', 'assets/land.png');
-       
+
         //домики
-        game.load.image('small_house', 'assets/small_house.png'); 
+        game.load.image('small_house', 'assets/small_house.png');
         game.load.image('small_house_mirrored', 'assets/small_house_mirrored.png');
         game.load.image('small_transparent _house', 'assets/small_transparent _house.png');
-        game.load.image('transparent_house_green', 'assets/transparent_house_green.png'); 
+        game.load.image('transparent_house_green', 'assets/transparent_house_green.png');
         game.load.image('big_house', 'assets/big_house.png');
         game.load.image('house_purple_right', 'assets/house_purple_right.png');
         game.load.image('house_purple_left', 'assets/house_purple_left.png');
         game.load.image('purple_big_house_right', 'assets/purple_big_house_right.png');
         game.load.image('purple_big_house_left', 'assets/purple_big_house_left.png');
         game.load.image('transparent_big_house', 'assets/transparent_big_house.png');
-        game.load.image('house_red_left', 'assets/house_red_left.png'); 
-        game.load.image('house_red_right', 'assets/house_red_right.png'); 
+        game.load.image('house_red_left', 'assets/house_red_left.png');
+        game.load.image('house_red_right', 'assets/house_red_right.png');
         game.load.image('house_red', 'assets/house_red.png');
         game.load.image('transparent_house_red', 'assets/transparent_house_red.png');
-        game.load.image('house_green', 'assets/house_green.png'); 
-        game.load.image('house_orange1', 'assets/house_orange1.png'); 
-        game.load.image('house_orange2', 'assets/house_orange2.png'); 
-        game.load.image('house_orange3', 'assets/house_orange3.png'); 
+        game.load.image('house_green', 'assets/house_green.png');
+        game.load.image('house_orange1', 'assets/house_orange1.png');
+        game.load.image('house_orange2', 'assets/house_orange2.png');
+        game.load.image('house_orange3', 'assets/house_orange3.png');
         game.load.image('house_orange', 'assets/house_orange.png');
         game.load.image('big_house_orange', 'assets/big_house_orange.png');
         game.load.image('flash', 'assets/flash.png');
@@ -371,7 +371,7 @@ var MainGame = {
         //музыка
         game.load.audio('game_main', 'assets/audio/game.mp3');
         game.load.audio('laser', 'assets/audio/laser1.ogg');
-        
+
         cursors = game.input.keyboard.createCursorKeys();
         fireButton = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
         //наэкранные кнопки
@@ -789,8 +789,8 @@ var MainGame = {
         part[4].visible = false;
 
         //настройка нпц
-        npc = game.add.group(); 
-        new NPC(game, 5100, game.world.height - 850, 1, npc); 
+        npc = game.add.group();
+        new NPC(game, 5100, game.world.height - 850, 1, npc);
         new NPC(game, 5700, game.world.height - 850, 2, npc);
         new NPC(game, 6800, game.world.height - 850, 3, npc);
         new NPC(game, 7300, game.world.height - 850, 1, npc);
@@ -824,13 +824,13 @@ var MainGame = {
 
         //камера
         game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.4, 0.8);
-        
+
 
         //наэкранные кнопки (треюуется созданный игрок)
         if (tools.isMobile()) {
 
             let buttonLeft = game.add.button(70, config.targetHeight - 300, 'UI_left', null, this, 0, 0, 0);
-            buttonLeft.fixedToCamera = true;  
+            buttonLeft.fixedToCamera = true;
             buttonLeft.events.onInputDown.add(() => { player.isLeft = true; });
             buttonLeft.events.onInputUp.add(() => { player.isLeft = false; });
 
@@ -851,7 +851,7 @@ var MainGame = {
         }
 
         //индикаторы
-        let style = { font: "60px Nord", fill: "white", align: "center" };
+        style = { font: "60px Nord", fill: "white", align: "center" };
         this.patrons_text = game.add.text(config.targetWidth - 200, 100, "2", style);
         this.health_text = game.add.text(70, 100, "+100", style);
         this.patrons_text.fixedToCamera = true;
@@ -864,13 +864,24 @@ var MainGame = {
         this.actionText.visible = false;
 
         this.load_sprite.destroy();
+
+        text = "Корабль приземлился неудачно,\n при столкновении с планетой произошли поломки,\n из-за которых он не мог больше завестись без ремонта";
+        style = { font: "28px Comic Sans MS", fill: "white", align: "center" };
+        text_view = game.add.text(500, 100, text, style);
+
+        text_view.fixedToCamera = true;
+        text_view.wordWrap = true;
+        text_view.wordWrapWidth = 1000; //ширина блока
     },
 
     actionText: null,
 
+
     update: function () {
+        story(player.x);
         game.physics.arcade.collide(houses, player);
         game.physics.arcade.collide(parts, player, repair_spaceship, null, this);
+        
         //параллакс
         for (var i in rock_background) {
             rock_background[i].position.x = game.camera.position.x / 5 + i * 7337;
@@ -908,7 +919,18 @@ var MainGame = {
         //game.debug.spriteBounds(player);
     }
 }
-
+let ink_story = 0;
+function story(x) {
+    if ((x >= 2000) & (ink_story==0)) {
+        text_view.text = "У Лени очень сильно болела голова. \n Не удивительно, если смотреть что ему пришлось перенести.\n Выйдя из корабля Лёня ничего не увидел. Абсолютно.";
+        ink_story = 1;
+    }
+    if ((x >= 3000) & (ink_story == 1)) {
+        text_view.text = "Он долго-долго моргал и в его глазах начали проявляться очертания планетного ландшафта.\n После он увидел вокруг себя невиданные архитектурные сооружения. И любовался ими некоторое время";
+        ink_story = 2;
+    }
+    if ((x >= 4000)&(ink_story == 2)) text_view.text = '';
+    }
 let spaceshi1p;
 let asteroid;
 let ink = 0;
@@ -949,7 +971,7 @@ var IntroGame = {
         
 
         let text = " Ну что ж, нашего маленького инопланетянина зовут Лёня.\n Он дрейфовал на своем летательном корабле по просторам космоса. Лёня очень любит путешествовать, это его хобби";
-        let style = { font: "24px Comic Sans MS", fill: "white", align: "center" };
+        let style = { font: "28px Comic Sans MS", fill: "white", align: "center" };
         let text_view = game.add.text(100, 100, text, style);
 
         text_view.fixedToCamera = true;
@@ -969,11 +991,13 @@ var IntroGame = {
         spaceshi1p.body.velocity.y = +500;
         if (ink == 0) {
 
-            let text = "Леня так залюбовался космическими красотами,что задумался и не заметил, как врезался в огромный астероид.\n От полученного удара наш путешественник потерял сознание \n ";
-            let style = { font: "24px Comic Sans MS", fill: "white", align: "center" };
-            let text_view = game.add.text(100, 500, text, style);
+            let text = "Леня так залюбовался космическими красотами,что задумался и не заметил, \n как врезался в огромный астероид. От полученного удара \n наш путешественник потерял сознание \n ";
+            let style = { font: "28px Comic Sans MS", fill: "white", align: "center" };
+            let text_view = game.add.text(700, 500, text, style);
+            style = { font: "35px Comic Sans MS", fill: "white", align: "center" };
             text = "После полученных повреждений судно на автопилоте приземлилось на планету под названием Венец";
-            text_view = game.add.text(100, 800, text, style);
+            text_view = game.add.text(50, 800, text, style);
+            
             ink = 1;
             
             let timer = game.time.create(false);
